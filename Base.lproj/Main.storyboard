@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Create Page View Controller-->
         <scene sceneID="9Qa-Q5-4Vg">
             <objects>
-                <viewController id="Wp6-l2-C1I" sceneMemberID="viewController">
+                <viewController id="Wp6-l2-C1I" customClass="CreatePageViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tps-Vy-5gw"/>
                         <viewControllerLayoutGuide type="bottom" id="2cO-ME-aoE"/>
@@ -22,16 +22,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab_plus_black" id="WaH-Lc-n2D"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_plus_black" id="WaH-Lc-n2D">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgP-pB-7vF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="168" y="381"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="o96-3I-zmf">
             <objects>
-                <viewController id="F9c-Oy-wf3" sceneMemberID="viewController">
+                <viewController id="F9c-Oy-wf3" customClass="ProfileViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="drq-eL-FWs"/>
                         <viewControllerLayoutGuide type="bottom" id="Mhy-T3-YgK"/>
@@ -41,16 +43,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab_profile_black" id="cPq-TC-VTM"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_black" id="cPq-TC-VTM">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnD-sm-JCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-681" y="845"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="nS9-i0-zMR">
             <objects>
-                <viewController id="86n-N8-6eX" sceneMemberID="viewController">
+                <viewController id="86n-N8-6eX" customClass="HomeViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QpI-yD-tCp"/>
                         <viewControllerLayoutGuide type="bottom" id="HOz-fn-Vss"/>
@@ -60,7 +64,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab_home_black" id="NQf-Gc-j2U"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_home_black" id="NQf-Gc-j2U">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1F-s4-B8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
