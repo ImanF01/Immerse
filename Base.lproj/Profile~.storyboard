@@ -42,7 +42,7 @@
                     <connections>
                         <segue destination="0gs-4d-ytQ" kind="relationship" relationship="viewControllers" id="vX0-vk-Ksq"/>
                         <segue destination="Wp6-l2-C1I" kind="relationship" relationship="viewControllers" id="FiX-g7-F2f"/>
-                        <segue destination="e7V-En-OXk" kind="relationship" relationship="viewControllers" id="1Jk-f0-cKU"/>
+                        <segue destination="cNq-2u-8IG" kind="relationship" relationship="viewControllers" id="1Jk-f0-cKU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PNd-u0-rQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,18 +59,49 @@
             </objects>
             <point key="canvasLocation" x="978.39999999999998" y="694.90254872563719"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="81e-23-Twu">
+        <!--Profile View Controller-->
+        <scene sceneID="Kdb-FS-kKJ">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="e7V-En-OXk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Jgj-S8-2eI"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f0q-8C-g2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="6Cz-gJ-sd3" customClass="ProfileViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Oi-IH-Xb0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ov6-fV-Mau"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VhQ-w8-J3L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LzL-3D-nxj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISk-1O-MyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-644" y="887.40629685157433"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HjP-X4-MZU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cNq-2u-8IG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_black" id="11m-yo-3ze">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HBl-QJ-8Hd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6Cz-gJ-sd3" kind="relationship" relationship="rootViewController" id="wOy-sv-494"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9EY-eR-x3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1583.2" y="887.40629685157433"/>
         </scene>
     </scenes>
     <resources>
         <image name="tab_plus_black" width="25" height="25"/>
+        <image name="tab_profile_black" width="25" height="25"/>
     </resources>
 </document>

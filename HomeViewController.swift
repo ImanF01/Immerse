@@ -17,20 +17,19 @@ final class HomeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
         
         // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "delveViewController") as! DelveViewController
+        var viewController = storyboard.instantiateViewController(withIdentifier: "DelveViewController") as! DelveViewController
         
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
-    
     private lazy var followViewController: FollowViewController = {
         // Load Storyboard
         let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
         
         // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "followViewController") as! FollowViewController
+        var viewController = storyboard.instantiateViewController(withIdentifier: "FollowViewController") as! FollowViewController
         
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)

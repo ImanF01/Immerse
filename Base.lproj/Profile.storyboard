@@ -1,54 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ntv-ea-m5Q">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cNq-2u-8IG">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Profile View Controller-->
-        <scene sceneID="zPE-Dv-kc0">
+        <scene sceneID="Kdb-FS-kKJ">
             <objects>
-                <viewController id="AA8-8d-kuG" customClass="ProfileViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6Cz-gJ-sd3" customClass="ProfileViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1Px-sU-6D5"/>
-                        <viewControllerLayoutGuide type="bottom" id="nnW-Ai-G4i"/>
+                        <viewControllerLayoutGuide type="top" id="1Oi-IH-Xb0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ov6-fV-Mau"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3NV-ow-3LZ">
+                    <view key="view" contentMode="scaleToFill" id="VhQ-w8-J3L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="elE-EM-XvQ"/>
+                    <navigationItem key="navigationItem" id="LzL-3D-nxj"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Md0-HT-zgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISk-1O-MyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-520.79999999999995" y="804.64767616191909"/>
+            <point key="canvasLocation" x="-644" y="887.40629685157433"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="8vF-Hg-dRS">
+        <scene sceneID="HjP-X4-MZU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ntv-ea-m5Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" selectedImage="tab_profile_black" id="MKb-Qz-qyv">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cNq-2u-8IG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_black" id="11m-yo-3ze">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1Qz-qL-bMP">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HBl-QJ-8Hd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="AA8-8d-kuG" kind="relationship" relationship="rootViewController" id="CPL-XB-wkj"/>
+                        <segue destination="6Cz-gJ-sd3" kind="relationship" relationship="rootViewController" id="wOy-sv-494"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wf3-HI-Zz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9EY-eR-x3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1460" y="804.64767616191909"/>
+            <point key="canvasLocation" x="-1583.2" y="887.40629685157433"/>
         </scene>
     </scenes>
     <resources>
