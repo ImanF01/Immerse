@@ -7,31 +7,23 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-class DelveViewController: UIViewController {
-
+class DelveViewController: UIViewController, IndicatorInfoProvider {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("Delve View Controller Will Appear")
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Delve")
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        print("Delve View Controller Will Disappear")
-    }
-   
-
 }

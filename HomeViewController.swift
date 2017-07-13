@@ -7,105 +7,34 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-final class HomeViewController: UIViewController {
+class HomeViewController: ButtonBarPagerTabStripViewController {
     
-    @IBOutlet var segmentedControl: UISegmentedControl!
-    
-    private lazy var delveViewController: DelveViewController = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
-        
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "DelveViewController") as! DelveViewController
-        
-        // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
-        
-        return viewController
-    }()
-    private lazy var followViewController: FollowViewController = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
-        
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "FollowViewController") as! FollowViewController
-        
-        // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
-        
-        return viewController
-    }()
-    
-    // MARK: - View Life Cycle
+    let purpleInspireColor = UIColor(red:0.13, green:0.03, blue:0.25, alpha:1.0)
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupView()
-    }
-    
-    // MARK: - View Methods
-    
-    private func setupView() {
-        setupSegmentedControl()
-        
-        updateView()
-    }
-    
-    private func updateView() {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            remove(asChildViewController: followViewController)
-            add(asChildViewController: delveViewController)
-        } else {
-            remove(asChildViewController: delveViewController)
-            add(asChildViewController: followViewController)
+        // change selected bar color
+        settings.style.buttonBarBackgroundColor = .white
+        settings.style.buttonBarItemBackgroundColor = .white
+        settings.style.selectedBarBackgroundColor = purpleInspireColor
+        settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 20)
+        settings.style.selectedBarHeight = 2.0
+        settings.style.buttonBarMinimumLineSpacing = 0
+        settings.style.buttonBarItemTitleColor = .black
+        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+        settings.style.buttonBarLeftContentInset = 0
+        settings.style.buttonBarRightContentInset = 0
+        changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+            guard changeCurrentIndex == true else { return }
+            oldCell?.label.textColor = .black
+            newCell?.label.textColor = self?.purpleInspireColor
         }
+        super.viewDidLoad()
     }
-    
-    private func setupSegmentedControl() {
-        // Configure Segmented Control
-        segmentedControl.removeAllSegments()
-        segmentedControl.insertSegment(withTitle: "Delve", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "Follow", at: 1, animated: false)
-        segmentedControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
-        
-        // Select First Segment
-        segmentedControl.selectedSegmentIndex = 0
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        let child_1 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "DelveViewController")
+        let child_2 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "FollowViewController")
+        return [child_1, child_2]
     }
-    
-    // MARK: - Actions
-    
-    func selectionDidChange(_ sender: UISegmentedControl) {
-        updateView()
-    }
-    
-    // MARK: - Helper Methods
-    
-    private func add(asChildViewController viewController: UIViewController) {
-        // Add Child View Controller
-        addChildViewController(viewController)
-        
-        // Add Child View as Subview
-        view.addSubview(viewController.view)
-        
-        // Configure Child View
-        viewController.view.frame = view.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Notify Child View Controller
-        viewController.didMove(toParentViewController: self)
-    }
-    
-    private func remove(asChildViewController viewController: UIViewController) {
-        // Notify Child View Controller
-        viewController.willMove(toParentViewController: nil)
-        
-        // Remove Child View From Superview
-        viewController.view.removeFromSuperview()
-        
-        // Notify Child View Controller
-        viewController.removeFromParentViewController()
-    }
-    
 }
