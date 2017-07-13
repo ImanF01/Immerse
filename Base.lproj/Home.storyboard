@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rIy-MH-KTS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,12 +21,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" id="sRh-zp-hOW"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="sRh-zp-hOW">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vRq-pb-CgI">
+                            <rect key="frame" x="37" y="7" width="301" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="vRq-pb-CgI" id="1d6-Ze-7o9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1F-s4-B8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="YLS-Ir-F8n">
+                    <connections>
+                        <segue destination="bRY-01-cNQ" kind="show" id="9wk-pA-bBC"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1191.2" y="859.52023988005999"/>
+        </scene>
+        <!--Delve View Controller-->
+        <scene sceneID="GRF-2z-AmN">
+            <objects>
+                <viewController storyboardIdentifier="delveViewController" id="jUY-GV-Y08" customClass="DelveViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dbO-2K-GwD"/>
+                        <viewControllerLayoutGuide type="bottom" id="sVe-ma-PYg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FxK-3X-ZfL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2EC-DF-cIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1425" y="1531"/>
+        </scene>
+        <!--Follow View Controller-->
+        <scene sceneID="4Yn-pg-sZ4">
+            <objects>
+                <viewController storyboardIdentifier="followViewController" id="bRY-01-cNQ" customClass="FollowViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PCl-38-zNc"/>
+                        <viewControllerLayoutGuide type="bottom" id="lG6-bF-UGI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hme-Rq-K4F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.41568627450000001" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u9K-hP-uBE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gbI-iT-UOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2062" y="860"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tJo-eC-RY2">
@@ -33,8 +96,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p1i-6r-IKJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p1i-6r-IKJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
