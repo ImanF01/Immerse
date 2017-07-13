@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FollowViewController: UIPageViewController {
+class FollowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

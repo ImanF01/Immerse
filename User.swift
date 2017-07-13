@@ -12,6 +12,9 @@ import FirebaseDatabase.FIRDataSnapshot
 class User: NSObject {
     let uid: String
     let username: String
+    var followerCount: Int?
+    var followingCount: Int?
+    var contributionCount: Int?
     private static var _current: User?
     static var current: User {
         guard let currentUser = _current else {
@@ -28,10 +31,18 @@ class User: NSObject {
     
     init?(snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String : Any],
-            let username = dict["username"] as? String
+            let username = dict["username"] as? String,
+            let followerCount = dict["follower_count"] as? Int,
+            let followingCount = dict["following_count"] as? Int,
+            let contributionCount = dict["contribution_count"] as? Int
             else { return nil }
+        
         self.uid = snapshot.key
         self.username = username
+        self.followerCount = followerCount
+        self.followingCount = followingCount
+        self.contributionCount = contributionCount
+        
         super.init()
     }
     required init?(coder aDecoder: NSCoder) {

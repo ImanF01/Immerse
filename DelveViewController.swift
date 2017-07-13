@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DelveViewController: UIPageViewController {
+class DelveViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
