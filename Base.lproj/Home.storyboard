@@ -41,13 +41,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uau-P9-pCY" firstAttribute="top" secondItem="J85-qp-OIS" secondAttribute="bottom" id="4Ce-8d-l3i"/>
-                            <constraint firstItem="J85-qp-OIS" firstAttribute="leading" secondItem="Ncn-l2-KBW" secondAttribute="leading" id="MCz-Z6-jX5"/>
-                            <constraint firstItem="J85-qp-OIS" firstAttribute="top" secondItem="Ncn-l2-KBW" secondAttribute="top" constant="64" id="UAw-bO-ZhL"/>
-                            <constraint firstAttribute="trailing" secondItem="J85-qp-OIS" secondAttribute="trailing" id="VqC-FB-3r1"/>
+                            <constraint firstItem="J85-qp-OIS" firstAttribute="leading" secondItem="Ncn-l2-KBW" secondAttribute="leading" id="QzE-67-32t"/>
+                            <constraint firstItem="J85-qp-OIS" firstAttribute="top" secondItem="Ncn-l2-KBW" secondAttribute="top" constant="64" id="VtD-iu-KxP"/>
                             <constraint firstItem="9S9-40-4PP" firstAttribute="leading" secondItem="Ncn-l2-KBW" secondAttribute="leading" id="dkD-6d-NxN"/>
                             <constraint firstAttribute="trailing" secondItem="9S9-40-4PP" secondAttribute="trailing" id="nIV-lW-MQN"/>
+                            <constraint firstAttribute="trailing" secondItem="J85-qp-OIS" secondAttribute="trailing" id="oNG-ap-uTp"/>
                             <constraint firstItem="9S9-40-4PP" firstAttribute="top" secondItem="Ncn-l2-KBW" secondAttribute="top" id="sf7-dV-gWY"/>
+                            <constraint firstItem="uau-P9-pCY" firstAttribute="top" secondItem="J85-qp-OIS" secondAttribute="bottom" id="vcy-Xb-omq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Rq-CO-TWq"/>
@@ -58,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eD-tn-Ebq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="681.40929535232385"/>
+            <point key="canvasLocation" x="839" y="681"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ckd-eb-NSv">
@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7D-fJ-i3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="1447"/>
+            <point key="canvasLocation" x="838" y="1447"/>
         </scene>
     </scenes>
     <resources>

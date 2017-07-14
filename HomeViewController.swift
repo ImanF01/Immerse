@@ -14,11 +14,10 @@ class HomeViewController: ButtonBarPagerTabStripViewController {
     let purpleInspireColor = UIColor(red:0.13, green:0.03, blue:0.25, alpha:1.0)
     
     override func viewDidLoad() {
-        // change selected bar color
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
         settings.style.selectedBarBackgroundColor = purpleInspireColor
-        settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 20)
+        settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
         settings.style.buttonBarItemTitleColor = .black
@@ -32,6 +31,7 @@ class HomeViewController: ButtonBarPagerTabStripViewController {
         }
         super.viewDidLoad()
     }
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child_1 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "DelveViewController")
         let child_2 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "FollowViewController")
