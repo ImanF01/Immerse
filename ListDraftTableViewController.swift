@@ -18,8 +18,13 @@ class ListDraftTableViewController: UITableViewController {
         return 10
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listDraftTableViewCell", for: indexPath)
-        cell.textLabel?.text = "Yay - it's working!"
-                return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listDraftTableViewCell", for: indexPath) as! ListDraftTableViewCell
+        cell.noteTitleLabel.text = "note's title"
+        cell.noteModificationTimeLabel.text = "note's modification time"
+        
+        return cell
     }
 }
+
+
+
