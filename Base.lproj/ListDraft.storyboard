@@ -12,7 +12,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fjk-pG-9Tc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="tDb-27-pjb" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tDb-27-pjb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_plus_black" id="nsV-bL-JfT">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
@@ -66,6 +66,7 @@
                                 <connections>
                                     <outlet property="noteModificationTimeLabel" destination="YAH-ii-cI7" id="BWI-Hq-Bjh"/>
                                     <outlet property="noteTitleLabel" destination="fjq-zh-H5y" id="NtF-kB-WUn"/>
+                                    <segue destination="IdR-tp-pgg" kind="show" identifier="displayDraft" id="3oB-OC-aRY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -74,14 +75,71 @@
                             <outlet property="delegate" destination="lJf-pn-W9q" id="EcS-Zs-61l"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Z6g-uU-VCN"/>
+                    <navigationItem key="navigationItem" id="Z6g-uU-VCN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yey-ri-chB">
+                            <connections>
+                                <segue destination="IdR-tp-pgg" kind="show" identifier="addDraft" id="q7q-wL-q3g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Em-YU-84B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85.599999999999994" y="969.26536731634189"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="TiQ-0R-0hV">
+            <objects>
+                <viewController id="IdR-tp-pgg" customClass="DisplayDraftViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V6R-Te-WLV"/>
+                        <viewControllerLayoutGuide type="bottom" id="vbN-7j-TH8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aSB-78-vHp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sto-vO-6YD" customClass="RichEditorView" customModule="RichEditorView">
+                                <rect key="frame" x="8" y="110" width="359" height="492"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMu-jC-qoc">
+                                <rect key="frame" x="8" y="72" width="359" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="09q-27-yBd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kH7-2i-1X9">
+                            <connections>
+                                <segue destination="2I5-pJ-YK8" kind="unwind" identifier="cancel" unwindAction="unwindToListDraftViewController:" id="qQV-qk-Wyg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ljr-Ou-tJb">
+                            <connections>
+                                <segue destination="2I5-pJ-YK8" kind="unwind" identifier="save" unwindAction="unwindToListDraftViewController:" id="hh9-dF-ocB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="editorView" destination="sto-vO-6YD" id="zO7-pt-gMQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Icb-HM-TsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2I5-pJ-YK8" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="969"/>
+        </scene>
     </scenes>
     <resources>
         <image name="tab_plus_black" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="q7q-wL-q3g"/>
+    </inferredMetricsTieBreakers>
 </document>

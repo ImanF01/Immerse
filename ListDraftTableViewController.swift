@@ -28,7 +28,18 @@ class ListDraftTableViewController: UITableViewController {
         
         return cell
     }
-    
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "displayDraft" {
+                print("Table view cell tapped")
+            } else if identifier == "addDraft" {
+                print("+ button tapped")
+            }
+        }
+    }
+    @IBAction func unwindToListDraftViewController(_ segue: UIStoryboardSegue) {
+        
+      
+    }
     
 }
