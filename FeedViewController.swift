@@ -9,7 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 
-class FollowViewController: UIViewController, IndicatorInfoProvider {
+class FeedViewController: UIViewController, IndicatorInfoProvider {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class FollowViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Follow")
+        return IndicatorInfo(title: "Feed")
     }
     
 }

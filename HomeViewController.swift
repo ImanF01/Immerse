@@ -34,7 +34,7 @@ class HomeViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child_1 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "DelveViewController")
-        let child_2 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "FollowViewController")
+        let child_2 = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "FeedViewController")
         return [child_1, child_2]
     }
 }

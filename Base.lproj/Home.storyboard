@@ -69,7 +69,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MzI-Qe-zku">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MzI-Qe-zku">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="41" y="1447"/>
         </scene>
-        <!--Follow View Controller-->
+        <!--Feed View Controller-->
         <scene sceneID="i9l-72-M6Y">
             <objects>
-                <viewController storyboardIdentifier="FollowViewController" id="mep-6A-60h" customClass="FollowViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="mep-6A-60h" customClass="FeedViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vhH-Ql-OYp"/>
                         <viewControllerLayoutGuide type="bottom" id="pby-qt-9vw"/>

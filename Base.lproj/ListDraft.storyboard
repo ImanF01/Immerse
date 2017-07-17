@@ -127,6 +127,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="draftTitleTextField" destination="gMu-jC-qoc" id="RI7-xp-NzR"/>
                         <outlet property="editorView" destination="sto-vO-6YD" id="zO7-pt-gMQ"/>
                     </connections>
                 </viewController>

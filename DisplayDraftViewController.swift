@@ -12,7 +12,7 @@ import RichEditorView
 class DisplayDraftViewController: UIViewController {
 
     @IBOutlet weak var editorView: RichEditorView!
-    
+    @IBOutlet weak var draftTitleTextField: UITextField!
     lazy var toolbar: RichEditorToolbar = {
         let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
         toolbar.options = [RichEditorDefaultOption.bold, RichEditorDefaultOption.italic,RichEditorDefaultOption.undo, RichEditorDefaultOption.redo,RichEditorDefaultOption.orderedList]
@@ -28,7 +28,6 @@ class DisplayDraftViewController: UIViewController {
         toolbar.delegate = self as? RichEditorToolbarDelegate
         toolbar.editor = editorView
         
-        // We will create a custom action that clears all the input text when it is pressed
         let item = RichEditorOptionItem(image: nil, title: "Clear") { toolbar in
             toolbar.editor?.html = ""
         }
@@ -42,7 +41,14 @@ class DisplayDraftViewController: UIViewController {
             if identifier == "cancel" {
                 print("Cancel button tapped")
             } else if identifier == "save" {
+                
                 print("Save button tapped")
+                let draft = Draft()
+                draft.title = draftTitleTextField.text ?? ""
+                draft.modificationTime = Date()
+                
+                let listDraftTableViewController = segue.destination as! ListDraftTableViewController
+                listDraftTableViewController.drafts.append(draft)
             }
         }
 

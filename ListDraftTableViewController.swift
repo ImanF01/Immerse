@@ -10,6 +10,11 @@ import UIKit
 import Hero
 
 class ListDraftTableViewController: UITableViewController {
+    var drafts = [Draft](){
+        didSet {
+    tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,14 +22,16 @@ class ListDraftTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return drafts.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listDraftTableViewCell", for: indexPath) as! ListDraftTableViewCell
-        cell.noteTitleLabel.text = "note's title"
-        cell.noteModificationTimeLabel.text = "note's modification time"
+        let row = indexPath.row
+        let draft = drafts[row]
+        cell.noteTitleLabel.text = draft.title
+        cell.noteModificationTimeLabel.text = draft.modificationTime.convertToString() 
         
         return cell
     }
