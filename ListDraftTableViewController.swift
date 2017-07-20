@@ -18,6 +18,7 @@ class ListDraftTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tableView.allowsMultipleSelection = true   multiple selection
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,6 +29,8 @@ class ListDraftTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listDraftTableViewCell", for: indexPath) as! ListDraftTableViewCell
         let row = indexPath.row
         let draft = drafts[row]
+//        cell.accessoryType = cell.isSelected ? .checkmark : .none    multiple selection
+//        cell.selectionStyle = .none
         cell.noteTitleLabel.text = draft.title
         cell.noteModificationTimeLabel.text = draft.modificationTime.convertToString() 
         
@@ -46,6 +49,14 @@ class ListDraftTableViewController: UITableViewController {
             }
         }
     }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {  multiple selection
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+//        }
+//        
+//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {  multiple selection
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//        }
+    
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let displayDraftViewController = self.storyboard!.instantiateViewController(withIdentifier: "displayDraftTableViewController")
 //        let listDraftTableViewController = self.storyboard!.instantiateViewController(withIdentifier: "listDraftTableViewController")
@@ -53,8 +64,12 @@ class ListDraftTableViewController: UITableViewController {
 //        hero_replaceViewController(with: displayDraftViewController)
 //    }
     @IBAction func unwindToListDraftViewController(_ segue: UIStoryboardSegue) {
-        
       
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            drafts.remove(at: indexPath.row)
+        }
     }
     
 }

@@ -11,8 +11,9 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class CreateUsernameViewController: UIViewController {
+    
 
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var usernameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func nextButtonTapped(_ sender: UIButton) {
             guard let firUser = Auth.auth().currentUser,
@@ -35,7 +36,10 @@ class CreateUsernameViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+      //  let usernameTextField = SkyFloatingLabelTextField(frame: CGRectMake(10, 10, 200, 45))
+        usernameTextField.placeholder = "username"
+        usernameTextField.title = "Your username"
+        self.view.addSubview(usernameTextField)
         // Do any additional setup after loading the view.
     }
 
@@ -43,6 +47,20 @@ class CreateUsernameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+extension UIViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
     
-
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
 }

@@ -8,11 +8,12 @@
 
 import UIKit
 import RichEditorView
+import Firebase
 
 class DisplayDraftViewController: UIViewController
 {
     var draft: Draft?
-//    @IBOutlet weak var editorView: RichEditorView!
+    @IBOutlet weak var editorView: RichEditorView!
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
 //    lazy var toolbar: RichEditorToolbar = {
@@ -24,9 +25,8 @@ class DisplayDraftViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-//        
+        
 //        editorView.delegate = self
-//            as? RichEditorDelegate
 //        editorView.inputAccessoryView = toolbar
 //        
 //        toolbar.delegate = self as? RichEditorToolbarDelegate
@@ -46,15 +46,18 @@ class DisplayDraftViewController: UIViewController
         draftTitleTextField.text = draft?.title ?? ""
         textView.text = draft?.content ?? ""
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        let listDraftTableViewController = segue.destination as! ListDraftTableViewController
         if segue.identifier == "save"
         {
+//            let ref = Database.database().reference().child("notes")
+//            ref.setValue(["notes": draftTitleTextField.text])
             if let draft = draft
             {
                 draft.title = draftTitleTextField.text ?? ""
                 draft.content = textView.text ?? ""
+                let listDraftTableViewController = segue.destination as! ListDraftTableViewController
                 listDraftTableViewController.tableView.reloadData()
             } else
             {
@@ -62,13 +65,18 @@ class DisplayDraftViewController: UIViewController
                 newDraft.title = draftTitleTextField.text ?? ""
                 newDraft.content = textView.text ?? ""
                 newDraft.modificationTime = Date()
+                let listDraftTableViewController = segue.destination as! ListDraftTableViewController
                 listDraftTableViewController.drafts.append(newDraft)
             }
+        } else if segue.identifier == "extraInfo" {
+            print("extra info segue clicked")
+        
         }
+        
     }
 }
 //extension DisplayDraftViewController: RichEditorDelegate {
-    
+//
 //    func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
 //        if content.isEmpty {
 //            textView.text = ""
@@ -77,7 +85,7 @@ class DisplayDraftViewController: UIViewController
 //            
 //        }
 //    }
-
+//}
 
 
 

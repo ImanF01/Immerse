@@ -12,7 +12,7 @@
         <!--Home View Controller-->
         <scene sceneID="ide-KJ-yFz">
             <objects>
-                <viewController id="WZt-Zp-eIg" customClass="HomeViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WZt-Zp-eIg" customClass="HomeViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9xw-jJ-Lus"/>
                         <viewControllerLayoutGuide type="bottom" id="uau-P9-pCY"/>
