@@ -25,6 +25,8 @@ class DisplayDraftViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        draftTitleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
+
 //        editorView.delegate = self
 //        editorView.inputAccessoryView = toolbar
 //        

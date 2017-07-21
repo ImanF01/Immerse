@@ -15,10 +15,11 @@ class ListDraftTableViewController: UITableViewController {
     tableView.reloadData()
         }
     }
-
+    @IBOutlet weak var publishButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tableView.allowsMultipleSelection = true   multiple selection
+        self.tableView.allowsMultipleSelection = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,11 +30,9 @@ class ListDraftTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listDraftTableViewCell", for: indexPath) as! ListDraftTableViewCell
         let row = indexPath.row
         let draft = drafts[row]
-//        cell.accessoryType = cell.isSelected ? .checkmark : .none    multiple selection
-//        cell.selectionStyle = .none
         cell.noteTitleLabel.text = draft.title
-        cell.noteModificationTimeLabel.text = draft.modificationTime.convertToString() 
-    
+        cell.noteModificationTimeLabel.text = draft.modificationTime.convertToString()
+        
         return cell
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,10 +48,11 @@ class ListDraftTableViewController: UITableViewController {
             }
         }
     }
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {  multiple selection
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-//        }
-//        
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {  //multiple selection
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+//
 //    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {  multiple selection
 //            tableView.cellForRow(at: indexPath)?.accessoryType = .none
 //        }

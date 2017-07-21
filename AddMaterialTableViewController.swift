@@ -10,7 +10,8 @@ import UIKit
 
 class AddMaterialTableViewController: UITableViewController {
     
-     var count = 1
+    var numberTapped = [String]()
+    var count = 1
     var addition = [Add]() {
         didSet {
             tableView.reloadData()
@@ -20,11 +21,20 @@ class AddMaterialTableViewController: UITableViewController {
 
     @IBAction func plusButton(_ sender: UIBarButtonItem) {
         count += 1
+        
+        numberTapped.append("\(count)")
+        
+        tableView.beginUpdates()
+        let indexPath:IndexPath = IndexPath(row:(self.numberTapped.count - 1), section:0)
+        tableView.insertRows(at: [indexPath], with: .left)
+        tableView.endUpdates()
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
  
 
    override func viewDidLoad() {
         super.viewDidLoad()
+        tableView?.allowsMultipleSelection = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,7 +57,8 @@ class AddMaterialTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
-        
+        cell.titleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
+        cell.urlTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
         cell.titleTextField.text = add?.title
         cell.urlTextField.text = add?.contentURL
         cell.descriptionTextView.text = add?.textView
@@ -55,8 +66,7 @@ class AddMaterialTableViewController: UITableViewController {
         return cell
 
     }
-  
-
+   
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
