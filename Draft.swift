@@ -11,9 +11,21 @@ import FirebaseDatabase
 import FirebaseDatabase.FIRDataSnapshot
 
 class Draft {
-    var title = ""
-    var content = ""
+    var title:String
+    var content:String
     var modificationTime = Date()
+    
+    init(title:String, content:String) {
+        self.title = title
+        self.content = content
+        self.modificationTime = Date()
+    }
+    
+    init() {
+        self.title = ""
+        self.content = ""
+        self.modificationTime = Date()
+    }
 }
 //struct Draft {
 //    let title: String!

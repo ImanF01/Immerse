@@ -13,7 +13,7 @@ import Firebase
 class DisplayDraftViewController: UIViewController
 {
     var draft: Draft?
-    @IBOutlet weak var editorView: RichEditorView!
+//    @IBOutlet weak var editorView: RichEditorView!
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
 //    lazy var toolbar: RichEditorToolbar = {
@@ -25,7 +25,6 @@ class DisplayDraftViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
 //        editorView.delegate = self
 //        editorView.inputAccessoryView = toolbar
 //        
@@ -51,8 +50,8 @@ class DisplayDraftViewController: UIViewController
     {
         if segue.identifier == "save"
         {
-//            let ref = Database.database().reference().child("notes")
-//            ref.setValue(["notes": draftTitleTextField.text])
+            let ref = Database.database().reference().child("notes").childByAutoId()
+            ref.setValue(["title": draftTitleTextField.text, "text": textView.text])
             if let draft = draft
             {
                 draft.title = draftTitleTextField.text ?? ""
@@ -61,9 +60,7 @@ class DisplayDraftViewController: UIViewController
                 listDraftTableViewController.tableView.reloadData()
             } else
             {
-                let newDraft = Draft()
-                newDraft.title = draftTitleTextField.text ?? ""
-                newDraft.content = textView.text ?? ""
+                let newDraft = Draft(title: draftTitleTextField.text ?? "", content: textView.text ?? "")
                 newDraft.modificationTime = Date()
                 let listDraftTableViewController = segue.destination as! ListDraftTableViewController
                 listDraftTableViewController.drafts.append(newDraft)

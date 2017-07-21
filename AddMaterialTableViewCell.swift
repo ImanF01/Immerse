@@ -13,7 +13,6 @@ class AddMaterialTableViewCell: UITableViewCell {
     @IBOutlet weak var titleTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var urlTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-
     
     override func awakeFromNib() {
         super.awakeFromNib()

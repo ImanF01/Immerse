@@ -10,12 +10,20 @@ import UIKit
 
 class AddMaterialTableViewController: UITableViewController {
     
+     var count = 1
     var addition = [Add]() {
         didSet {
-    tableView.reloadData()
+            tableView.reloadData()
         }
     }
-    override func viewDidLoad() {
+    let add: Add? = nil
+
+    @IBAction func plusButton(_ sender: UIBarButtonItem) {
+        count += 1
+    }
+ 
+
+   override func viewDidLoad() {
         super.viewDidLoad()
     }
 
@@ -23,21 +31,31 @@ class AddMaterialTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+    }
 
- 
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return count
     }
 
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
+        
+        cell.titleTextField.text = add?.title
+        cell.urlTextField.text = add?.contentURL
+        cell.descriptionTextView.text = add?.textView
+        
         return cell
 
     }
-    
+  
 
     /*
     // Override to support conditional editing of the table view.

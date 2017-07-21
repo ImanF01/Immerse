@@ -33,7 +33,7 @@ class ListDraftTableViewController: UITableViewController {
 //        cell.selectionStyle = .none
         cell.noteTitleLabel.text = draft.title
         cell.noteModificationTimeLabel.text = draft.modificationTime.convertToString() 
-        
+    
         return cell
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

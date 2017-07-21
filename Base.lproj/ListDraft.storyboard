@@ -19,6 +19,8 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9Vh-t4-2bh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -59,7 +61,7 @@
                                             <rect key="frame" x="21" y="11" width="346" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -77,8 +79,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Z6g-uU-VCN">
-                        <barButtonItem key="leftBarButtonItem" title="Publish" id="ree-Bw-sNe"/>
+                        <barButtonItem key="leftBarButtonItem" title="Publish" id="ree-Bw-sNe">
+                            <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="yey-ri-chB">
+                            <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="BhC-Km-UmT" kind="show" id="zjI-sf-avO"/>
                             </connections>
@@ -102,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-q9-WwC" customClass="SkyFloatingLabelTextField" customModule="Immerse" customModuleProvider="target">
-                                <rect key="frame" x="16" y="88" width="152" height="47.5"/>
+                                <rect key="frame" x="16" y="88" width="152" height="47"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -112,13 +117,23 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                        <color key="value" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                        <color key="value" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAo-NK-Vmb">
                                 <rect key="frame" x="134" y="560" width="80" height="50"/>
                                 <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="afh-rk-fW1"/>
+                                    <constraint firstAttribute="height" constant="50" id="f2U-mh-aJo"/>
+                                    <constraint firstAttribute="width" constant="80" id="xhf-WU-B9a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,43 +150,41 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zGQ-fw-Blr">
-                                <rect key="frame" x="16" y="181" width="343" height="281"/>
+                                <rect key="frame" x="16" y="144" width="343" height="319"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="281" id="9nt-Wp-aLS"/>
-                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zGQ-fw-Blr" firstAttribute="top" secondItem="Ae9-q9-WwC" secondAttribute="bottom" constant="45" id="0aF-mQ-Uec"/>
-                            <constraint firstItem="DAo-NK-Vmb" firstAttribute="top" secondItem="zGQ-fw-Blr" secondAttribute="bottom" constant="98" id="6ML-II-UpV"/>
-                            <constraint firstItem="zGQ-fw-Blr" firstAttribute="leading" secondItem="tby-39-uLa" secondAttribute="leadingMargin" id="7Ic-14-f3b"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ae9-q9-WwC" secondAttribute="trailing" constant="191" id="8x2-te-t2n"/>
-                            <constraint firstItem="DAo-NK-Vmb" firstAttribute="leading" secondItem="tby-39-uLa" secondAttribute="leadingMargin" constant="118" id="I1J-q6-qYR"/>
-                            <constraint firstItem="Ae9-q9-WwC" firstAttribute="leading" secondItem="tby-39-uLa" secondAttribute="leadingMargin" id="Mga-sZ-wkA"/>
-                            <constraint firstItem="o2j-WT-5Fa" firstAttribute="top" secondItem="DAo-NK-Vmb" secondAttribute="bottom" constant="8" id="OMh-bm-C3m"/>
-                            <constraint firstItem="Ae9-q9-WwC" firstAttribute="top" secondItem="Qs9-0I-XF1" secondAttribute="bottom" constant="24" id="WP9-gJ-mEB"/>
-                            <constraint firstItem="DAo-NK-Vmb" firstAttribute="top" secondItem="zGQ-fw-Blr" secondAttribute="bottom" constant="98" id="Xyn-Mu-uR9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DAo-NK-Vmb" secondAttribute="trailing" constant="145" id="Z16-ZJ-ybW"/>
-                            <constraint firstItem="zGQ-fw-Blr" firstAttribute="trailing" secondItem="tby-39-uLa" secondAttribute="trailingMargin" id="chM-ti-tFh"/>
+                            <constraint firstItem="Ae9-q9-WwC" firstAttribute="leading" secondItem="tby-39-uLa" secondAttribute="leadingMargin" id="BF8-1a-suL"/>
+                            <constraint firstItem="Ae9-q9-WwC" firstAttribute="leading" secondItem="zGQ-fw-Blr" secondAttribute="leading" id="LlI-4X-LWa"/>
+                            <constraint firstItem="DAo-NK-Vmb" firstAttribute="leading" secondItem="tby-39-uLa" secondAttribute="leading" constant="134" id="Qrb-xg-K8r"/>
+                            <constraint firstItem="Ae9-q9-WwC" firstAttribute="top" secondItem="Qs9-0I-XF1" secondAttribute="bottom" constant="24" id="WqE-ZF-faZ"/>
+                            <constraint firstItem="DAo-NK-Vmb" firstAttribute="top" secondItem="zGQ-fw-Blr" secondAttribute="bottom" constant="97" id="dnV-YM-qfb"/>
+                            <constraint firstItem="o2j-WT-5Fa" firstAttribute="top" secondItem="DAo-NK-Vmb" secondAttribute="bottom" constant="8" symbolic="YES" id="giU-09-FDa"/>
+                            <constraint firstItem="zGQ-fw-Blr" firstAttribute="top" secondItem="Ae9-q9-WwC" secondAttribute="bottom" constant="9" id="l2z-5C-f5p"/>
+                            <constraint firstItem="zGQ-fw-Blr" firstAttribute="trailing" secondItem="tby-39-uLa" secondAttribute="trailingMargin" id="nox-pz-0az"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Jb7-FA-hSS">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="47X-02-WdV">
+                            <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="tS6-Rd-aaX" kind="unwind" identifier="cancel" unwindAction="unwindToListDraftViewController:" id="GXl-nW-TNC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="UjM-62-Oql">
+                            <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="tS6-Rd-aaX" kind="unwind" identifier="save" unwindAction="unwindToListDraftViewController:" id="ODJ-Gp-1pv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
@@ -183,7 +196,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uz6-an-tfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tS6-Rd-aaX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="832.79999999999995" y="968.36581709145435"/>
+            <point key="canvasLocation" x="905" y="969"/>
         </scene>
         <!--Title-->
         <scene sceneID="0Oh-V4-90Z">
@@ -209,7 +222,10 @@
                                             <textInputTraits key="textInputTraits"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Title"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Title of Your Contribution"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Title of Contribution"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                    <color key="value" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3uW-9X-8d5" customClass="SkyFloatingLabelTextField" customModule="Immerse" customModuleProvider="target">
@@ -221,6 +237,9 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="URL"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="URL of Contribution"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                    <color key="value" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5R-6H-mDQ">
@@ -231,7 +250,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fC6-X7-B7h">
-                                            <rect key="frame" x="33" y="156" width="240" height="128"/>
+                                            <rect key="frame" x="33" y="156" width="323" height="128"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
@@ -241,7 +260,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="descriptionTextView" destination="fC6-X7-B7h" id="kU1-Z2-sUX"/>
+                                    <outlet property="descriptionTextView" destination="fC6-X7-B7h" id="xEI-mc-dFh"/>
                                     <outlet property="titleTextField" destination="lyF-qm-3Gv" id="Pjn-xv-T6q"/>
                                     <outlet property="urlTextField" destination="3uW-9X-8d5" id="TU2-29-sLk"/>
                                 </connections>
@@ -254,26 +273,34 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="26N-5l-MqG">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tTV-qy-VWg">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="tTV-qy-VWg">
+                            <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="3RP-kw-tQm" kind="unwind" unwindAction="unwindToListDraftViewController:" id="HuX-cI-r7u"/>
+                                <segue destination="3RP-kw-tQm" kind="unwind" identifier="unwindBack" unwindAction="unwindToListDraftViewController:" id="Nit-mY-yYR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6eo-vS-N4h"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6eo-vS-N4h">
+                            <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="plusButton:" destination="wQR-P5-ETY" id="x8i-IJ-jac"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKm-rL-Dbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3RP-kw-tQm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="1729.385307346327"/>
+            <point key="canvasLocation" x="1766" y="1811"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N55-Te-EMT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0QA-9q-K6r" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Grq-VA-c3z">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Grq-VA-c3z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -284,7 +311,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7JI-tw-Qlf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="832.79999999999995" y="1729.385307346327"/>
+            <point key="canvasLocation" x="905" y="1812"/>
         </scene>
     </scenes>
     <resources>
@@ -292,6 +319,6 @@
         <image name="tab_plus_black" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Z2J-VN-kmD"/>
+        <segue reference="zjI-sf-avO"/>
     </inferredMetricsTieBreakers>
 </document>
