@@ -274,6 +274,7 @@
                                         </textView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.97245579957962036" green="0.92957669496536255" blue="0.8932684063911438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="descriptionTextView" destination="fC6-X7-B7h" id="xEI-mc-dFh"/>
                                     <outlet property="titleTextField" destination="lyF-qm-3Gv" id="Pjn-xv-T6q"/>
