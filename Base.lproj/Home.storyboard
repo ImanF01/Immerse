@@ -67,6 +67,12 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8xh-f9-eZZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_home_black" id="v3K-ML-3kh">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="NO"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="NO"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="NO"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="NO"/>
+                        </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -107,7 +113,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="O4C-Wf-Mfc">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="O4C-Wf-Mfc" customClass="PublishedContentCollectionViewCell" customModule="Immerse" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -118,7 +124,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gb0-BM-C88">
-                                                    <rect key="frame" x="47" y="157" width="34" height="21"/>
+                                                    <rect key="frame" x="20" y="155" width="77" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -133,6 +139,8 @@
                                             <constraint firstItem="xFQ-U4-zvp" firstAttribute="top" secondItem="O4C-Wf-Mfc" secondAttribute="top" id="T66-HR-NBz"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imageView" destination="xFQ-U4-zvp" id="v9v-A1-HSE"/>
+                                            <outlet property="titleLabel" destination="Gb0-BM-C88" id="H7l-Lr-6C7"/>
                                             <segue destination="YUP-fK-NFg" kind="presentation" id="g87-EP-Mk7">
                                                 <segue key="commit" inheritsFrom="parent" id="ZWH-Nc-eGk"/>
                                                 <segue key="preview" inheritsFrom="commit" id="iE1-Kx-Ixh"/>
@@ -244,4 +252,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="g87-EP-Mk7"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

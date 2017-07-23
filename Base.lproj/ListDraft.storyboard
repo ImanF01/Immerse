@@ -47,7 +47,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yWT-Zh-UWV" id="PRu-XE-NvB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note Modification Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAH-ii-cI7">
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-q9-WwC" customClass="SkyFloatingLabelTextField" customModule="Immerse" customModuleProvider="target">
-                                <rect key="frame" x="16" y="88" width="337" height="47"/>
+                                <rect key="frame" x="16" y="88" width="26" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -153,7 +153,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zGQ-fw-Blr">
-                                <rect key="frame" x="16" y="144" width="343" height="319"/>
+                                <rect key="frame" x="16" y="127" width="343" height="336"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -201,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="904.79999999999995" y="968.36581709145435"/>
         </scene>
-        <!--Title-->
+        <!--Supplemental Material-->
         <scene sceneID="0Oh-V4-90Z">
             <objects>
                 <tableViewController id="wQR-P5-ETY" customClass="AddMaterialTableViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
@@ -214,7 +214,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="334"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C9a-lQ-e1u" id="RQd-y6-vF6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyF-qm-3Gv" customClass="SkyFloatingLabelTextField" customModule="Immerse" customModuleProvider="target">
@@ -268,11 +268,12 @@
                                             <rect key="frame" x="33" y="156" width="323" height="128"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.97245579957962036" green="0.92957669496536255" blue="0.8932684063911438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -288,7 +289,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="26N-5l-MqG">
+                    <navigationItem key="navigationItem" title="Supplemental Material" id="26N-5l-MqG">
                         <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="tTV-qy-VWg">
                             <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -337,4 +338,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="zjI-sf-avO"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
