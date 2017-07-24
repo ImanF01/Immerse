@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         configureInitialRootViewController(for: window)
-     
+        UITabBar.appearance().tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
+
         
         return true
     }
