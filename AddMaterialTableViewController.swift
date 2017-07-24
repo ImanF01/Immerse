@@ -60,10 +60,10 @@ class AddMaterialTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
         cell.titleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
         cell.urlTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
-        cell.titleTextField.text = add?.title
-        cell.urlTextField.text = add?.contentURL
-        cell.descriptionTextView.text = add?.textView
-        
+//        cell.titleTextField.text = add?.title
+//        cell.urlTextField.text = add?.contentURL
+//        cell.descriptionTextView.text = add?.textView
+//        
         return cell
 
     }
