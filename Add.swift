@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 struct Add {
-    var title: String
-    let contentURL: String
-    var textView: String
+    var title = ""
+    let contentURL = "https://www.w3schools.com/w3images/fjords.jpg"
+    var textView = ""
     
-    init(title: String, contentURL: String, textView: String) {
-        self.title = title
-        self.contentURL = contentURL
-        self.textView = textView
-    }
+//    init(title: String, contentURL: String, textView: String) {
+//        self.title = title
+//        self.contentURL = "https://www.w3schools.com/w3images/fjords.jpg"
+//        self.textView = textView
+//    }
 
 }

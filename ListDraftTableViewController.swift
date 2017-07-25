@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import Hero
 
 class ListDraftTableViewController: UITableViewController {
     var drafts = [Draft](){
@@ -52,23 +51,14 @@ class ListDraftTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {  //multiple selection
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
-//
-//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {  multiple selection
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-//        }
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let displayDraftViewController = self.storyboard!.instantiateViewController(withIdentifier: "displayDraftTableViewController")
-//        let listDraftTableViewController = self.storyboard!.instantiateViewController(withIdentifier: "listDraftTableViewController")
-//        listDraftTableViewController.heroModalAnimationType = .uncover(direction: .up)
-//        hero_replaceViewController(with: displayDraftViewController)
-//    }
+   
     @IBAction func unwindToListDraftViewController(_ segue: UIStoryboardSegue) {
       
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             drafts.remove(at: indexPath.row)
+            
         }
     }
     

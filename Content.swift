@@ -11,13 +11,17 @@ import UIKit
 
 struct Content {
     
+    var draft: Draft?
     var title: String
     var summary: String
     var image: UIImage
+    let uid: String
     
-    init(title: String, summary: String, image: UIImage) {
-        self.title = title
-        self.summary = summary
+    init(title: String, summary: String, image: UIImage, uid: String) {
+        self.title = (draft?.title)!
+        self.summary = (draft?.content)!
         self.image = image
+        self.uid = uid 
     }
+    
 }

@@ -7,9 +7,21 @@
 //
 
 import UIKit
+import Hero
 
 class PublishedContentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    var draft: Draft? {
+        didSet {
+            guard let draft = draft else { return }
+            let title = draft.title
+            
+            titleLabel.text = title
+            titleLabel.heroID = "\(title)title"
+            titleLabel.heroModifiers = [.zPosition(4)]
+        }
+    }
 }

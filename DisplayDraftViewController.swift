@@ -7,39 +7,19 @@
 //
 
 import UIKit
-import RichEditorView
 import Firebase
 
 class DisplayDraftViewController: UIViewController
 {
     var draft: Draft?
-//    @IBOutlet weak var editorView: RichEditorView!
+    var count = 0
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
-//    lazy var toolbar: RichEditorToolbar = {
-//        let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
-//        toolbar.options = [RichEditorDefaultOption.bold, RichEditorDefaultOption.italic,RichEditorDefaultOption.undo, RichEditorDefaultOption.redo,RichEditorDefaultOption.orderedList]
-//        return toolbar
-//    }()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         draftTitleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
-
-//        editorView.delegate = self
-//        editorView.inputAccessoryView = toolbar
-//        
-//        toolbar.delegate = self as? RichEditorToolbarDelegate
-//        toolbar.editor = editorView
-//        
-//        let item = RichEditorOptionItem(image: nil, title: "Clear") { toolbar in
-//         toolbar.editor?.html = ""
-//        }
-//        
-//        var options = toolbar.options
-//        options.append(item)
-//        toolbar.options = options
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -52,8 +32,10 @@ class DisplayDraftViewController: UIViewController
     {
         if segue.identifier == "save"
         {
-            let ref = Database.database().reference().child("notes").childByAutoId()
+            count += 1
+            let ref = Database.database().reference().child("notes").child("note")
             ref.setValue(["title": draftTitleTextField.text, "text": textView.text])
+//            ref.updateChildValues(childUpdates)
             if let draft = draft
             {
                 draft.title = draftTitleTextField.text ?? ""
@@ -74,17 +56,6 @@ class DisplayDraftViewController: UIViewController
         
     }
 }
-//extension DisplayDraftViewController: RichEditorDelegate {
-//
-//    func richEditor(_ editor: RichEditorView, contentDidChange content: String) {
-//        if content.isEmpty {
-//            textView.text = ""
-//        } else {
-//            textView.text = content
-//            
-//        }
-//    }
-//}
 
 
 
