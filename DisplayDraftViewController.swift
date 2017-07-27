@@ -16,6 +16,14 @@ class DisplayDraftViewController: UIViewController
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
+    @IBAction func publishButtonTapped(_ sender: Any) {
+        //count += 1
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let home = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        home.stringPassed = draftTitleTextField.text!
+        print("draftTitleTextField.text = \(String(describing: draftTitleTextField.text))")
+        navigationController?.pushViewController(home, animated: true)
+    }
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -32,7 +40,6 @@ class DisplayDraftViewController: UIViewController
     {
         if segue.identifier == "save"
         {
-            count += 1
             let ref = Database.database().reference().child("notes").child("note")
             ref.setValue(["title": draftTitleTextField.text, "text": textView.text])
 //            ref.updateChildValues(childUpdates)

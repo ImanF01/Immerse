@@ -1,120 +1,93 @@
-////
-////  AddMaterialTableViewController.swift
-////  Immerse
-////
-////  Created by Iman F on 7/19/17.
-////  Copyright © 2017 Iman F (group project). All rights reserved.
-////
 //
-//import UIKit
-//import Firebase
+//  AddMaterialTableViewController.swift
+//  Immerse
 //
-//class AddMaterialTableViewController: UITableViewController, UITextFieldDelegate {
-//    
-//    var ref: DatabaseReference!
-//    var numberTapped = [String]()
-//    var count = 1
-//    var addition = [Add]() {
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
-//    
-//    let add: Add? = nil
+//  Created by Iman F on 7/19/17.
+//  Copyright © 2017 Iman F (group project). All rights reserved.
 //
-//    @IBAction func plusButton(_ sender: UIBarButtonItem) {
-//        count += 1
-//        
-//        numberTapped.append("\(count)")
-//        
-//        tableView.beginUpdates()
-//        let indexPath:IndexPath = IndexPath(row:(self.numberTapped.count - 1), section:0)
-//        tableView.insertRows(at: [indexPath], with: .bottom)
-//        tableView.endUpdates()
-//        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//        tableView.reloadData()
-//    }
-//
-//    @IBAction func saveButtonTapped(_ sender: Any) {
-////        let sender = sender as! UIButton
-////        let index = sender.tag
-////        
-////        let ref = Database.database().reference().child("notes").child("note").child("supplemental material")
-//
-//        guard let title = cell.titleTextField.text,
-//            let url = cell.urlTextField.text,
-//            let desc = cell.descriptionTextView.text else { return }
-//        
-//        //ref.setValue(["title": title, "URL": url, "description" : desc])
-//    }
-// 
-//
-//   override func viewDidLoad() {
-//        super.viewDidLoad()
-//        tableView?.allowsMultipleSelection = true
-//        self.hideKeyboard()
-//    
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    override func viewWillAppear(_ animated: Bool)
-//    {
-//        super.viewWillAppear(animated)
-//        
-//    }
-//
-//
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return count
-//    }
-//
-//    
-//    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
-//        cell.saveButton.tag = indexPath.row
-//        cell.titleTextField.delegate = self
-//        cell.titleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
-//        cell.urlTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
-//        cell.titleTextField.text = add?.title
-//        cell.urlTextField.text = add?.contentURL
-//        cell.descriptionTextView.text = add?.textView
-//
-//        return cell
-//
-//    }
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            addition.remove(at: indexPath.row)
-//        }
-////        } else if editingStyle == .insert {
-////            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-////        }
-//    }
-//    
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        print(textField.text)
-//    }
-//
-//}
-//extension UIViewController
-//{
-//    func hideKeyboard()
-//    {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-//            target: self,
-//            action: #selector(UIViewController.dismissKeyboard))
-//        
-//        view.addGestureRecognizer(tap)
-//    }
-//    
-//    func dismissKeyboard()
-//    {
-//        view.endEditing(true)
-//    }
-//}
+import UIKit
+import SkyFloatingLabelTextField
+import Kingfisher
+
+class AddMaterialTableViewController: UITableViewController {
+    //    @IBOutlet weak var urlTextField: SkyFloatingLabelTextField!
+    var addition = [Add](){
+        didSet {
+           // tableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: .none)
+            tableView.reloadData()
+        }
+    }
+    var add: Add?
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        print("Save button tapped")
+        let form = FormTableViewCell()
+        var add = Add()
+        add.title = form.titleTextField.text ?? ""
+        print("titleTextField = \(add.title)" )
+        add.textView = form.descriptionTextView.text ?? ""
+        print("descriptionTextView = \(add.textView)" )
+        //      let url = URL(string: (add?.contentURL)!)
+        //      addMaterial.thumbnailImage.kf.setImage(with: url)
+        addition.append(add)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboard()
+        
+    }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+       // let form = FormTableViewCell()
+//        form.titleTextField.text = add?.title ?? ""
+//        form.descriptionTextView.text = add?.textView ?? ""
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return addition.count + 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell : FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell", for: indexPath) as! FormTableViewCell
+            cell.titleTextField.text = ""
+            cell.descriptionTextView.text = ""
+            print("First cell displayed")
+            return cell
+        }
+        else {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
+        let row = indexPath.row
+        let add = addition[row]
+        cell.titleLabel.text = add.title
+        cell.descriptionLabel.text = add.textView
+        //        let url = URL(string: add.contentURL)
+        //        cell.thumbnailImage.kf.setImage(with: url)
+        return cell
+        }
+    }
+
+}
+extension UIViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+}

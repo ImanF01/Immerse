@@ -18,7 +18,6 @@ class ListDraftTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.allowsMultipleSelection = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,10 +46,6 @@ class ListDraftTableViewController: UITableViewController {
             }
         }
     }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {  //multiple selection
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
    
     @IBAction func unwindToListDraftViewController(_ segue: UIStoryboardSegue) {
       

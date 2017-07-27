@@ -14,10 +14,10 @@ class PublishedContentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var draft: Draft? {
+    var content: Content? {
         didSet {
-            guard let draft = draft else { return }
-            let title = draft.title
+            guard let content = content else { return }
+            let title = content.title
             
             titleLabel.text = title
             titleLabel.heroID = "\(title)title"

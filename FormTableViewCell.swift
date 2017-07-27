@@ -1,5 +1,5 @@
 //
-//  AddMaterialTableViewCell.swift
+//  FormTableViewCell.swift
 //  Immerse
 //
 //  Created by Iman F on 7/25/17.
@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import SkyFloatingLabelTextField
 
-class AddMaterialTableViewCell: UITableViewCell {
+class FormTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var thumbnailImage: UIImageView!
-
-    
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var titleTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
