@@ -13,17 +13,21 @@ class DisplayDraftViewController: UIViewController
 {
     var draft: Draft?
     var count = 0
+    var data = PassingData()
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
     @IBAction func publishButtonTapped(_ sender: Any) {
-        //count += 1
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let home = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        count += 1
+    let storyboard = UIStoryboard(name: "Home", bundle: nil)
+       let home = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         home.stringPassed = draftTitleTextField.text!
-        print("draftTitleTextField.text = \(String(describing: draftTitleTextField.text))")
-        navigationController?.pushViewController(home, animated: true)
+        data.stringPassed = draftTitleTextField.text!
+        print("home.stringPassed = \(String(describing: home.stringPassed))")
+//        tabBarController?.selectedIndex = 0
+        navigationController?.pushViewController(home, animated: false)
     }
+
     override func viewDidLoad()
     {
         super.viewDidLoad()

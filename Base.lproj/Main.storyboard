@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab View Controller-->
         <scene sceneID="XsM-5n-yP1">
             <objects>
-                <tabBarController id="EFE-FE-4jS" sceneMemberID="viewController">
+                <tabBarController id="EFE-FE-4jS" customClass="MainTabViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6Ag-4z-Z8r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -36,7 +36,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0q-8C-g2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1641" y="564"/>
+            <point key="canvasLocation" x="-1178" y="631"/>
         </scene>
         <!--Home-->
         <scene sceneID="pf6-cw-L8Q">
@@ -46,7 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hp8-eW-mgz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918.4000000000001" y="680.95952023988013"/>
+            <point key="canvasLocation" x="-365" y="631"/>
         </scene>
         <!--ListDraft-->
         <scene sceneID="Kis-FO-ATa">
@@ -56,7 +56,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcy-9k-zj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-748" y="973.76311844077964"/>
+            <point key="canvasLocation" x="-787" y="632"/>
         </scene>
     </scenes>
 </document>

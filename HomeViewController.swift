@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
         }
     }
     var stringPassed = ""
+//    var data = PassingData()
     
     override func viewDidLoad() {
         

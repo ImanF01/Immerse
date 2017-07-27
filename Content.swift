@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 struct Content {
-    
+
+    var passingData = Data()
     var title: String
     var summary: String
     var image: UIImage
@@ -18,7 +19,7 @@ struct Content {
     
     init(title: String, summary: String, image: UIImage, uid: String) {
         self.title = title
-        self.summary = title
+        self.summary = summary
         self.image = image
         self.uid = uid 
     }

@@ -12,9 +12,8 @@ import SkyFloatingLabelTextField
 class FormTableViewCell: UITableViewCell {
 
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var titleTextField: SkyFloatingLabelTextField!
-    @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var titleTextField: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

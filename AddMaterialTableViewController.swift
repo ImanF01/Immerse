@@ -9,7 +9,9 @@ import UIKit
 import SkyFloatingLabelTextField
 import Kingfisher
 
-class AddMaterialTableViewController: UITableViewController {
+class AddMaterialTableViewController: UITableViewController, UITextViewDelegate {
+    var titleText: String?
+    var descriptionText: String?
     //    @IBOutlet weak var urlTextField: SkyFloatingLabelTextField!
     var addition = [Add](){
         didSet {
@@ -17,21 +19,21 @@ class AddMaterialTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+
     var add: Add?
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("Save button tapped")
-        let form = FormTableViewCell()
-        var add = Add()
-        add.title = form.titleTextField.text ?? ""
-        print("titleTextField = \(add.title)" )
-        add.textView = form.descriptionTextView.text ?? ""
-        print("descriptionTextView = \(add.textView)" )
-        //      let url = URL(string: (add?.contentURL)!)
-        //      addMaterial.thumbnailImage.kf.setImage(with: url)
-        addition.append(add)
+        print("this is the addition array: \(addition)")
+        if let titleText = self.titleText, let descriptionText = self.descriptionText{
+            if (!(titleText.isEmpty) || !(descriptionText.isEmpty)) {
+                    add = Add(title: titleText, textView: descriptionText)
+                    self.addition.append(add!)
+                }
+            } else {
+                print("error")
+            }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboard()
@@ -56,21 +58,41 @@ class AddMaterialTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell : FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell", for: indexPath) as! FormTableViewCell
+            let cell : FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell") as! FormTableViewCell
             cell.titleTextField.text = ""
             cell.descriptionTextView.text = ""
+            cell.descriptionTextView.delegate = self
+            cell.titleTextField.delegate = self
+            
             print("First cell displayed")
             return cell
         }
         else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
-        let row = indexPath.row
+        let row = indexPath.row - 1
         let add = addition[row]
         cell.titleLabel.text = add.title
         cell.descriptionLabel.text = add.textView
         //        let url = URL(string: add.contentURL)
         //        cell.thumbnailImage.kf.setImage(with: url)
         return cell
+            
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.tag == 0 {
+            self.titleText = textView.text
+        } else {
+            self.descriptionText = textView.text
+        }
+
+
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            addition.remove(at: indexPath.row)
+            
         }
     }
 
@@ -90,4 +112,5 @@ extension UIViewController
     {
         view.endEditing(true)
     }
+    
 }
