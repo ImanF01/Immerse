@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class DisplayDraftViewController: UIViewController
 {
+    var noteEditing = false
+    var key: String?
     var draft: Draft?
     var count = 0
     var data = PassingData()
@@ -18,15 +21,10 @@ class DisplayDraftViewController: UIViewController
     @IBOutlet weak var textView: UITextView!
     
     @IBAction func publishButtonTapped(_ sender: Any) {
+        
         count += 1
-    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-       let home = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        home.stringPassed = draftTitleTextField.text!
-        data.stringPassed = draftTitleTextField.text!
-        print("home.stringPassed = \(String(describing: home.stringPassed))")
-//        tabBarController?.selectedIndex = 0
-        navigationController?.pushViewController(home, animated: false)
-    }
+//        let ref = Database
+       }
 
     override func viewDidLoad()
     {
@@ -44,9 +42,15 @@ class DisplayDraftViewController: UIViewController
     {
         if segue.identifier == "save"
         {
-            let ref = Database.database().reference().child("notes").child("note")
-            ref.setValue(["title": draftTitleTextField.text, "text": textView.text])
-//            ref.updateChildValues(childUpdates)
+            if self.noteEditing {
+                let ref = Database.database().reference().child("drafts").child(User.current.uid).child(key!)
+                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text])
+            } else {
+                let ref = Database.database().reference().child("drafts").child(User.current.uid).childByAutoId()
+                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text])
+            }
+
+
             if let draft = draft
             {
                 draft.title = draftTitleTextField.text ?? ""
@@ -58,7 +62,7 @@ class DisplayDraftViewController: UIViewController
                 let newDraft = Draft(title: draftTitleTextField.text ?? "", content: textView.text ?? "")
                 newDraft.modificationTime = Date()
                 let listDraftTableViewController = segue.destination as! ListDraftTableViewController
-                listDraftTableViewController.drafts.append(newDraft)
+                //listDraftTableViewController.drafts.append(newDraft)
             }
         } else if segue.identifier == "extraInfo" {
             print("extra info segue clicked")

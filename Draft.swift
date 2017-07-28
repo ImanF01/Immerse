@@ -14,6 +14,14 @@ class Draft {
     var title:String
     var content:String
     var modificationTime = Date()
+    var key: String = ""
+    
+    init(title:String, content:String, key: String) {
+        self.key = key
+        self.title = title
+        self.content = content
+        self.modificationTime = Date()
+    }
     
     init(title:String, content:String) {
         self.title = title
@@ -26,6 +34,7 @@ class Draft {
         self.content = ""
         self.modificationTime = Date()
     }
+    
 }
 //struct Draft {
 //    let title: String!

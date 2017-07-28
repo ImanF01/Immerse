@@ -9,11 +9,11 @@
 import UIKit
 import SkyFloatingLabelTextField
 
+
 class FormTableViewCell: UITableViewCell {
 
     @IBOutlet weak var descriptionTextView: UITextView!
-    
-    @IBOutlet weak var titleTextField: UITextView!
+    @IBOutlet weak var titleTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +24,6 @@ class FormTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }

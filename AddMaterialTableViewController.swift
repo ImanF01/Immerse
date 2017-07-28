@@ -6,10 +6,12 @@
 //  Copyright © 2017 Iman F (group project). All rights reserved.
 //
 import UIKit
+import Firebase
+import FirebaseDatabase
 import SkyFloatingLabelTextField
 import Kingfisher
 
-class AddMaterialTableViewController: UITableViewController, UITextViewDelegate {
+class AddMaterialTableViewController: UITableViewController, UITextViewDelegate{
     var titleText: String?
     var descriptionText: String?
     //    @IBOutlet weak var urlTextField: SkyFloatingLabelTextField!
@@ -23,13 +25,27 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate 
     var add: Add?
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("this is the addition array: \(addition)")
-        if let titleText = self.titleText, let descriptionText = self.descriptionText{
-            if (!(titleText.isEmpty) || !(descriptionText.isEmpty)) {
-                    add = Add(title: titleText, textView: descriptionText)
-                    self.addition.append(add!)
-                }
-            } else {
+        
+//        if let titleText = self.titleText, let descriptionText = self.descriptionText {
+//            if (!(titleText.isEmpty) || !(descriptionText.isEmpty)) {
+//                    add = Add(title: titleText, textView: descriptionText)
+//                    self.addition.append(add!)
+//                }
+//            }
+        
+        let ref = Database.database().reference().child("drafts").child(User.current.uid)
+        if let descriptionText = self.descriptionText, let titleText = self.titleText {
+            print("titleText = \(titleText)")
+            
+            if (!(descriptionText.isEmpty) && !(titleText.isEmpty)) {
+                add = Add(title: titleText, textView: descriptionText)
+                print(addition)
+                self.addition.append(add!)
+                self.descriptionText = ""
+                self.titleText = ""
+            }
+        }
+        else {
                 print("error")
             }
     }
@@ -59,11 +75,10 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell") as! FormTableViewCell
-            cell.titleTextField.text = ""
+            cell.titleTextView.text = ""
+            cell.titleTextView.delegate = self
             cell.descriptionTextView.text = ""
             cell.descriptionTextView.delegate = self
-            cell.titleTextField.delegate = self
-            
             print("First cell displayed")
             return cell
         }
@@ -82,21 +97,20 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate 
     
     func textViewDidChange(_ textView: UITextView) {
         if textView.tag == 0 {
-            self.titleText = textView.text
-        } else {
             self.descriptionText = textView.text
         }
-
-
-    }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            addition.remove(at: indexPath.row)
-            
+        else {
+            self.titleText = textView.text
         }
     }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            addition.remove(at: indexPath.row)
+//            
+//        }
+//    }
+    }
 
-}
 extension UIViewController
 {
     func hideKeyboard()

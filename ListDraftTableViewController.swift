@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ListDraftTableViewController: UITableViewController {
     var drafts = [Draft](){
@@ -18,6 +19,28 @@ class ListDraftTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let ref = Database.database().reference().child("drafts").child(User.current.uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
+                return
+            }
+           print(snapshot)
+            self.drafts.removeAll()
+            if snapshot.count > 0 {
+                for x in 0...snapshot.count - 1 {
+                    let key = snapshot[x].key
+                    let snap = snapshot[x].value as! [String: Any]
+                    let draft = Draft(title: snap["title"] as! String , content: snap["text"] as! String, key: key)
+                    self.drafts.append(draft)
+                }
+            }
+
+            //self.tableView.reloadData()
+        })
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,8 +64,12 @@ class ListDraftTableViewController: UITableViewController {
                 let draft = drafts[indexPath.row]
                 let displayDraftViewController = segue.destination as! DisplayDraftViewController
                 displayDraftViewController.draft = draft
+                displayDraftViewController.noteEditing = true
+                displayDraftViewController.key = drafts[indexPath.row].key
             } else if identifier == "addDraft" {
                 print("+ button tapped")
+                let displayDraft = segue.destination as! DisplayDraftViewController
+                displayDraft.noteEditing = false
             }
         }
     }
