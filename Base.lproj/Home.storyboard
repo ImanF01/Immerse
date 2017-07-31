@@ -21,7 +21,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MzI-Qe-zku">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MzI-Qe-zku">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -107,7 +107,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ggo-z7-D4r"/>
                     <connections>
-                        <outlet property="collectionView" destination="HLi-6b-G7F" id="O0C-uz-kcE"/>
+                        <outlet property="collectionView" destination="HLi-6b-G7F" id="8hf-oh-uJt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OvQ-mx-uEm" userLabel="First Responder" sceneMemberID="firstResponder"/>

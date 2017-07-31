@@ -13,10 +13,15 @@ struct Add {
     var title: String
     let contentURL = "https://www.w3schools.com/w3images/fjords.jpg"
     var textView: String
+    var key: String = ""
     
+    init(title: String, textView: String, key: String) {
+        self.title = title
+        self.textView = textView
+        self.key = key
+    }
     init(title: String, textView: String) {
         self.title = title
         self.textView = textView
     }
-
 }

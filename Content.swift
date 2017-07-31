@@ -11,17 +11,20 @@ import UIKit
 
 struct Content {
 
-    var passingData = Data()
     var title: String
     var summary: String
-    var image: UIImage
-    let uid: String
+    var thumbnailURL: String
     
-    init(title: String, summary: String, image: UIImage, uid: String) {
+    init(title: String, summary: String, thumbnailURL: String) {
         self.title = title
         self.summary = summary
-        self.image = image
-        self.uid = uid 
+        self.thumbnailURL = thumbnailURL
+    }
+    
+    init() {
+        self.title = ""
+        self.summary = ""
+        self.thumbnailURL = ""
     }
     
 }

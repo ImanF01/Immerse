@@ -12,7 +12,7 @@ import FirebaseDatabase
 class ListDraftTableViewController: UITableViewController {
     var drafts = [Draft](){
         didSet {
-    tableView.reloadData()
+            tableView.reloadData()
         }
     }
     @IBOutlet weak var publishButton: UIBarButtonItem!
@@ -28,25 +28,23 @@ class ListDraftTableViewController: UITableViewController {
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
                 return
             }
-           print(snapshot)
+            print(snapshot)
             self.drafts.removeAll()
             if snapshot.count > 0 {
                 for x in 0...snapshot.count - 1 {
                     let key = snapshot[x].key
                     let snap = snapshot[x].value as! [String: Any]
-                    let draft = Draft(title: snap["title"] as! String , content: snap["text"] as! String, key: key)
+                    let draft = Draft(title: snap["title"] as! String, content: snap["text"] as! String, key: key, imageURL: snap["thumbnail"] as! String)
                     self.drafts.append(draft)
                 }
             }
-
-            //self.tableView.reloadData()
         })
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return drafts.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listDraftTableViewCell", for: indexPath) as! ListDraftTableViewCell
         let row = indexPath.row
@@ -73,9 +71,9 @@ class ListDraftTableViewController: UITableViewController {
             }
         }
     }
-   
+    
     @IBAction func unwindToListDraftViewController(_ segue: UIStoryboardSegue) {
-      
+        
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

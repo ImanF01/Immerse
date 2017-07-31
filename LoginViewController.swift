@@ -44,6 +44,7 @@ extension LoginViewController: FUIAuthDelegate {
         }
         guard let user = user
             else { return }
+        print("Hi")
         let userRef = Database.database().reference().child("users").child(user.uid)
         userRef.observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
             if let user = User(snapshot: snapshot) {
@@ -52,6 +53,7 @@ extension LoginViewController: FUIAuthDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: .main)
                 if let initialViewController = storyboard.instantiateInitialViewController() {
                     self.view.window?.rootViewController = initialViewController
+                    self.view.window?.makeKeyAndVisible()
                 }
             } else {
                 self.performSegue(withIdentifier: Constants.Segue.toCreateUsername, sender: self)

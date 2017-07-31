@@ -55,14 +55,18 @@ extension AppDelegate {
             let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User {
             
             User.setCurrent(user)
-            
+            print("main")
             initialViewController = UIStoryboard.initialViewController(for: .main)
+            window?.rootViewController = initialViewController
+            window?.makeKeyAndVisible()
         } else {
+            print("login")
             initialViewController = UIStoryboard.initialViewController(for: .login)
+            
+            window?.rootViewController = initialViewController
+            window?.makeKeyAndVisible()
         }
-        
-        window?.rootViewController = initialViewController
-        window?.makeKeyAndVisible()
+
     }
 }
 
