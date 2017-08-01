@@ -24,7 +24,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     let photoHelper = PhotoHelper()
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
-    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBAction func publishButtonTapped(_ sender: Any) {
         count += 1
         if let title = draftTitleTextField.text, let summary = textView.text, let url = draft?.imageURL {
@@ -33,7 +33,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         self.con.append(content)
         }
     }
-    @IBOutlet weak var extraInfo: UIButton!
     @IBAction func extraInfoButton(_ sender: Any) {
         if (draftTitleTextField.text?.isEmpty)! && textView.text.isEmpty {
             let alertController = UIAlertController(title: "Error", message: "Fill in the title and summary before continuing.", preferredStyle: UIAlertControllerStyle.alert)
@@ -51,14 +50,19 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBAction func uploadImage(_ sender: Any) {
         photoHelper.presentActionSheet(from: self)
         photoHelper.completionHandler = { (image) in
+            self.activityIndicatorView.activityIndicatorViewStyle = .whiteLarge
+            self.activityIndicatorView.startAnimating()
             StorageService.uploadImage(image, at: StorageReference.newPostImageReference(), completion: { (downloadURL) in
                 guard let downloadURL =  downloadURL else { return }
                 let urlString = downloadURL.absoluteString
                 self.imageView.image = image
                 DisplayDraftViewController.imageURL = urlString
+                self.activityIndicatorView.stopAnimating()
                 
             })
         }
+    }
+    func startAnimating() {
     }
     override func viewDidLoad()
     {

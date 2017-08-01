@@ -33,7 +33,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnC-kq-TQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1644" y="974"/>
+            <point key="canvasLocation" x="-1983" y="974"/>
         </scene>
         <!--List Draft Table View Controller-->
         <scene sceneID="DFL-3v-cSD">
@@ -93,7 +93,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Em-YU-84B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-770" y="974"/>
+            <point key="canvasLocation" x="-1137" y="974"/>
         </scene>
         <!--Display Draft View Controller-->
         <scene sceneID="Fah-As-r65">
@@ -138,6 +138,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RSo-Xm-VCe">
+                                <rect key="frame" x="29" y="378" width="317" height="180"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="yNi-el-Czv"/>
+                                </constraints>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-q9-WwC" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="16" y="78" width="343" height="30"/>
                                 <constraints>
@@ -177,13 +184,11 @@
                                     <action selector="uploadImage:" destination="BhC-Km-UmT" eventType="touchUpInside" id="W6v-ix-egk"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RSo-Xm-VCe">
-                                <rect key="frame" x="29" y="378" width="317" height="180"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="yNi-el-Czv"/>
-                                </constraints>
-                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="932-Y2-1Uf" customClass="pho">
+                                <rect key="frame" x="180" y="461" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -213,12 +218,12 @@
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="save" id="UjM-62-Oql">
-                                <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.14509803921568626" green="0.32941176470588235" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="tS6-Rd-aaX" kind="unwind" identifier="save" unwindAction="unwindToListDraftViewController:" id="ODJ-Gp-1pv"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Publish" style="plain" id="HOb-es-iDD">
+                            <barButtonItem title="Publish" id="HOb-es-iDD">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AHW-MQ-AIY">
                                     <rect key="frame" x="229" y="7" width="83" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -229,7 +234,7 @@
                                         <action selector="publishButtonTapped:" destination="BhC-Km-UmT" eventType="touchUpInside" id="8HP-vY-i6P"/>
                                     </connections>
                                 </button>
-                                <color key="tintColor" red="0.69993013143539429" green="0.23659893870353699" blue="0.5697062611579895" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.32941176470588235" green="0.1803921568627451" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -239,8 +244,8 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="932-Y2-1Uf" id="aue-mk-GM3"/>
                         <outlet property="draftTitleTextField" destination="Ae9-q9-WwC" id="HEg-Le-q6T"/>
-                        <outlet property="extraInfo" destination="DAo-NK-Vmb" id="el6-dN-7sp"/>
                         <outlet property="imageView" destination="RSo-Xm-VCe" id="ces-sp-6mU"/>
                         <outlet property="textView" destination="zGQ-fw-Blr" id="pPC-Jo-qrU"/>
                     </connections>
@@ -248,7 +253,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uz6-an-tfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tS6-Rd-aaX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="44" y="973.76311844077964"/>
+            <point key="canvasLocation" x="-306" y="974"/>
         </scene>
         <!--Supplemental Material-->
         <scene sceneID="SgF-hZ-ubs">
@@ -352,16 +357,8 @@
                             <barButtonItem systemItem="add" id="YcG-Jy-JFC">
                                 <color key="tintColor" red="0.1452459395" green="0.32847696539999999" blue="0.26202678680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="Pzy-dY-J3L">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="L29-45-ShR">
-                                    <rect key="frame" x="270.5" y="7" width="52" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Save"/>
-                                    <connections>
-                                        <action selector="saveButtonTapped:" destination="CIN-jJ-kFa" eventType="touchUpInside" id="uhf-6i-oJy"/>
-                                    </connections>
-                                </button>
+                            <barButtonItem style="plain" systemItem="save" id="Pzy-dY-J3L">
+                                <color key="tintColor" red="0.3294117647" green="0.18039215689999999" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -369,7 +366,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErF-x4-hLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7px-zF-hjb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="845.60000000000002" y="1723.9880059970017"/>
+            <point key="canvasLocation" x="628" y="1737"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XNW-Ot-eIV">
@@ -387,7 +384,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0I-y5-0p6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="1724"/>
+            <point key="canvasLocation" x="-306" y="1738"/>
         </scene>
     </scenes>
     <resources>
