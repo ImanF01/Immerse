@@ -25,6 +25,9 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    
+  
     @IBAction func publishButtonTapped(_ sender: Any) {
         count += 1
 //        if let title = , let summary = , let url =  {
