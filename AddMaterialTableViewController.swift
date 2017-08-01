@@ -51,21 +51,21 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-//        let ref = Database.database().reference().child("drafts").child(User.current.uid).child("extra info")
-//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//            guard let snapshot = snapshot.children.allObjects as?
-//                [DataSnapshot] else {
-//                    return
-//            }
-//            if snapshot.count > 0 {
-//                for y in 0...snapshot.count - 1 {
-//                    let key = snapshot[y].key
-//                    let snap = snapshot[y].value as! [String : Any]
-//                    let add = Add(title: snap["title"] as! String, textView: snap["description"] as! String, key: key)
-//                    self.addition.append(add)
-//                }
-//            }
-//        })
+        let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.children.allObjects as?
+                [DataSnapshot] else {
+                    return
+            }
+            if snapshot.count > 0 {
+                for y in 0...snapshot.count - 1 {
+                    let key = snapshot[y].key
+                    let snap = snapshot[y].value as! [String : Any]
+                    let add = Add(title: snap["title"] as! String, textView: snap["description"] as! String, contentURL: snap["URL"] as! String,key: key)
+                    self.addition.append(add)
+                }
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
