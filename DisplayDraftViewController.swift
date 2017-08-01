@@ -27,11 +27,11 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBAction func publishButtonTapped(_ sender: Any) {
         count += 1
-        if let title = draftTitleTextField.text, let summary = textView.text, let url = draft?.imageURL {
-        let content = Content(title: title, summary: summary, thumbnailURL: url)
+//        if let title = , let summary = , let url =  {
+        let content = Content(title: draftTitleTextField.text!, summary: textView.text, thumbnailURL: (draft?.imageURL)!)
         print(con)
         self.con.append(content)
-        }
+        
     }
     @IBAction func extraInfoButton(_ sender: Any) {
         if (draftTitleTextField.text?.isEmpty)! && textView.text.isEmpty {

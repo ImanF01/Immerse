@@ -14,15 +14,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var content = [Content]() {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    var con = [Content]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Content = \(content)")
+//        print("Content = \(content)")
     }
    
 
@@ -34,20 +30,19 @@ class HomeViewController: UIViewController {
 }
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return content.count
+        return con.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell
-        let con = content[indexPath.item]
-        cell?.titleLabel.text = con.title
+        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
+        cell.content = con[indexPath.item]
+//        cell?.titleLabel.text = con.title
 //        let url = URL(string: con.thumbnailURL)
 //        cell?.imageView.kf.setImage(with: url)
-        print("The title is \(String(describing: cell?.titleLabel.text))")
-        return cell!
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: view.bounds.height / CGFloat(content.count))
+        return CGSize(width: view.bounds.width, height: view.bounds.height / CGFloat(con.count))
     }
 }

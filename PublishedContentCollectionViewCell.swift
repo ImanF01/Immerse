@@ -8,6 +8,7 @@
 
 import UIKit
 import Hero
+import Kingfisher
 
 class PublishedContentCollectionViewCell: UICollectionViewCell {
     
@@ -22,6 +23,10 @@ class PublishedContentCollectionViewCell: UICollectionViewCell {
             titleLabel.text = title
             titleLabel.heroID = "\(title)title"
             titleLabel.heroModifiers = [.zPosition(4)]
+            let url = URL(string: content.thumbnailURL)
+            imageView.kf.setImage(with: url)
+            imageView.heroID = "\(title)_image"
+            imageView.heroModifiers = [.zPosition(2)]
         }
     }
 }

@@ -15,6 +15,7 @@ class ListDraftTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    var draft: Draft?
     @IBOutlet weak var publishButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -78,9 +79,13 @@ class ListDraftTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             drafts.remove(at: indexPath.row)
-            
+//            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!)
+//            ref.removeValue { error in
+//                if error != nil {
+//                    print("error \(error)")
+//                }
+//            }
         }
     }
-    
 }
 
