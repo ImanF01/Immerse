@@ -41,12 +41,24 @@ class CreateUsernameViewController: UIViewController {
         usernameTextField.placeholder = "username"
         usernameTextField.title = "Your username"
         self.view.addSubview(usernameTextField)
-        // Do any additional setup after loading the view.
+        self.hideKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    override func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    override func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+    
 }
-

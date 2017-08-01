@@ -7,13 +7,14 @@
 //
 
 import UIKit
-import SkyFloatingLabelTextField
+import GrowingTextView
 
 
 class FormTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var titleTextView: UITextView!
+    @IBOutlet weak var descriptionTextView: GrowingTextView!
+    @IBOutlet weak var titleTextView: GrowingTextView!
+    @IBOutlet weak var urlLabel: GrowingTextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

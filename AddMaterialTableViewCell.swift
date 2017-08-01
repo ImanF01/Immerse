@@ -7,15 +7,13 @@
 //
 
 import UIKit
-
 class AddMaterialTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var thumbnailImage: UIImageView!
+    @IBOutlet weak var urlLabel: UILabel!
 
-    
-    
+     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

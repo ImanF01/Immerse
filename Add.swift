@@ -11,17 +11,19 @@ import UIKit
 
 struct Add {
     var title: String
-    let contentURL = "https://www.w3schools.com/w3images/fjords.jpg"
+    let contentURL: String
     var textView: String
     var key: String = ""
     
-    init(title: String, textView: String, key: String) {
+    init(title: String, textView: String, contentURL: String, key: String) {
         self.title = title
         self.textView = textView
+        self.contentURL = contentURL
         self.key = key
     }
-    init(title: String, textView: String) {
+    init(title: String, textView: String, contentURL: String) {
         self.title = title
         self.textView = textView
+        self.contentURL = contentURL
     }
 }

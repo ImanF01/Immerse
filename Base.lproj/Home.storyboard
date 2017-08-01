@@ -14,14 +14,14 @@
         <scene sceneID="Ckd-eb-NSv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8xh-f9-eZZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_home_black" id="v3K-ML-3kh">
+                    <tabBarItem key="tabBarItem" title="" image="tab_home_black" selectedImage="tab_home_black" id="v3K-ML-3kh">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MzI-Qe-zku">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MzI-Qe-zku">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

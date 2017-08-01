@@ -78,7 +78,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         super.viewWillAppear(animated)
 
         let imgURL = URL(string: draft?.imageURL ?? "")
-        imageView.kf.setImage(with: imgURL)
+        imageView.kf.setImage(with: imgURL, options: [.transition(.fade(0.2))])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

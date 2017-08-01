@@ -8,16 +8,14 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-import SkyFloatingLabelTextField
-import Kingfisher
+import GrowingTextView
 
-class AddMaterialTableViewController: UITableViewController, UITextViewDelegate{
+class AddMaterialTableViewController: UITableViewController, GrowingTextViewDelegate {
     var titleText: String?
     var descriptionText: String?
-    //    @IBOutlet weak var urlTextField: SkyFloatingLabelTextField!
+    var urlText: String?
     var addition = [Add](){
         didSet {
-           // tableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: .none)
             tableView.reloadData()
         }
     }
@@ -25,17 +23,18 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate{
     var add: Add?
     var draft: Draft?
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if let descriptionText = self.descriptionText, let titleText = self.titleText {
+        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
             print("titleText = \(titleText)")
             let newRef = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").childByAutoId()
-            newRef.setValue(["title" : titleText, "description" : descriptionText])
+            newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
 
-            if (!(descriptionText.isEmpty) && !(titleText.isEmpty)) {
-                add = Add(title: titleText, textView: descriptionText)
+            if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
+                add = Add(title: titleText, textView: descriptionText, contentURL: urlText)
                 print(addition)
                 self.addition.append(add!)
                 self.descriptionText = ""
                 self.titleText = ""
+                self.urlText = ""
             }
         }
         else
@@ -85,6 +84,8 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate{
             cell.titleTextView.delegate = self
             cell.descriptionTextView.text = ""
             cell.descriptionTextView.delegate = self
+            cell.urlLabel.text = ""
+            cell.urlLabel.delegate = self
             print("First cell displayed")
             return cell
         }
@@ -94,8 +95,7 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate{
         let add = addition[row]
         cell.titleLabel.text = add.title
         cell.descriptionLabel.text = add.textView
-        //        let url = URL(string: add.contentURL)
-        //        cell.thumbnailImage.kf.setImage(with: url)
+        cell.urlLabel.text = add.contentURL
         return cell
             
         }
@@ -105,8 +105,11 @@ class AddMaterialTableViewController: UITableViewController, UITextViewDelegate{
         if textView.tag == 0 {
             self.descriptionText = textView.text
         }
-        else {
+        else if textView.tag == 1{
             self.titleText = textView.text
+        }
+        else {
+            self.urlText = textView.text
         }
     }
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

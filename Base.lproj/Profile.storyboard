@@ -53,7 +53,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HBl-QJ-8Hd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HBl-QJ-8Hd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
