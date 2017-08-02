@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import Kingfisher
+import GrowingTextView
 
 class DisplayDraftViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
@@ -17,20 +18,19 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var key: String?
     var draft: Draft?
     var count = 0
-    static var imageURL: String?
+    var imageURL: String?
     var con = [Content]()
     var content: Content?
     @IBOutlet weak var imageView: UIImageView!
     let photoHelper = PhotoHelper()
     @IBOutlet weak var draftTitleTextField: UITextField!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: GrowingTextView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     
   
     @IBAction func publishButtonTapped(_ sender: Any) {
         count += 1
-//        if let title = , let summary = , let url =  {
         let content = Content(title: draftTitleTextField.text!, summary: textView.text, thumbnailURL: (draft?.imageURL)!)
         print(con)
         self.con.append(content)
@@ -50,16 +50,18 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    @IBOutlet weak var uploadImage: UIButton!
     @IBAction func uploadImage(_ sender: Any) {
         photoHelper.presentActionSheet(from: self)
         photoHelper.completionHandler = { (image) in
+             self.uploadImage.isHidden = true
             self.activityIndicatorView.activityIndicatorViewStyle = .whiteLarge
             self.activityIndicatorView.startAnimating()
             StorageService.uploadImage(image, at: StorageReference.newPostImageReference(), completion: { (downloadURL) in
                 guard let downloadURL =  downloadURL else { return }
                 let urlString = downloadURL.absoluteString
                 self.imageView.image = image
-                DisplayDraftViewController.imageURL = urlString
+                self.imageURL = urlString
                 self.activityIndicatorView.stopAnimating()
                 
             })
@@ -102,26 +104,24 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             }
             if self.noteEditing {
                 let ref = Database.database().reference().child("drafts").child(User.current.uid).child(key!)
-//                let draftURL = draft.ima
-                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
+                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])
             } else {
                 if ((self.imageView.image != nil) && !(draftTitleTextField.text?.isEmpty)! && !textView.text.isEmpty) {
                     let ref = Database.database().reference().child("drafts").child(User.current.uid).childByAutoId()
-                    ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : DisplayDraftViewController.imageURL])
+                    ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : imageURL])
                 }
             }
-            
             
             if let draft = draft
             {
                 draft.title = draftTitleTextField.text ?? ""
                 draft.content = textView.text ?? ""
-                draft.imageURL = DisplayDraftViewController.imageURL ?? ""
+                draft.imageURL = imageURL ?? ""
                 let listDraftTableViewController = segue.destination as! ListDraftTableViewController
                 listDraftTableViewController.tableView.reloadData()
             } else
             {
-                let newDraft = Draft(title: draftTitleTextField.text ?? "", content: textView.text ?? "", imageURL: DisplayDraftViewController.imageURL ?? "")
+                let newDraft = Draft(title: draftTitleTextField.text ?? "", content: textView.text ?? "", imageURL: imageURL ?? "")
                 newDraft.modificationTime = Date()
             }
         } else if segue.identifier == "toExtraInfo" {

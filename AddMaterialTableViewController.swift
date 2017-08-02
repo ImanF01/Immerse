@@ -112,13 +112,26 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             self.urlText = textView.text
         }
     }
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            addition.remove(at: indexPath.row)
-//            
-//        }
-//    }
+
+  
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+                if editingStyle == .delete {
+                    let key = addition[indexPath.row].key
+                    let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(key)
+                    ref.removeValue(completionBlock: { (error, refer) in
+                        if error != nil {
+                            print("error \(String(describing: error))")
+                        }
+                        else {
+                            print(refer)
+                            print("Child Removed Correctly")
+                        }
+                    })
+                    addition.remove(at: indexPath.row)
+        }
     }
+}
+
 
 extension UIViewController
 {
