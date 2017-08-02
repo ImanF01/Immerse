@@ -10,11 +10,6 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="fjk-pG-9Tc">
@@ -373,7 +368,7 @@
                             <barButtonItem systemItem="add" id="YcG-Jy-JFC">
                                 <color key="tintColor" red="0.1452459395" green="0.32847696539999999" blue="0.26202678680000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
-                            <barButtonItem style="plain" systemItem="save" id="Pzy-dY-J3L">
+                            <barButtonItem systemItem="save" id="Pzy-dY-J3L">
                                 <color key="tintColor" red="0.3294117647" green="0.18039215689999999" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="CIN-jJ-kFa" id="zx8-0t-QX6"/>

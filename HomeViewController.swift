@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("Content = \(content)")
     }
    
 
@@ -35,10 +34,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
-        cell.content = con[indexPath.item]
-//        cell?.titleLabel.text = con.title
-//        let url = URL(string: con.thumbnailURL)
-//        cell?.imageView.kf.setImage(with: url)
+        let content = con[indexPath.item]
+        cell.titleLabel.text = content.title
+        let url = URL(string: content.thumbnailURL)
+        cell.imageView.kf.setImage(with: url)
         return cell
     }
 

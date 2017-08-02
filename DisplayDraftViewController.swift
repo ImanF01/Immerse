@@ -65,8 +65,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             })
         }
     }
-    func startAnimating() {
-    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -88,13 +87,28 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     {
         if segue.identifier == "save"
         {
+            if ((self.imageView.image == nil) || (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty) {
+                let alertController = UIAlertController(title: "Error", message: "Wait for the image to load and fill in the title and summary.", preferredStyle: UIAlertControllerStyle.alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                    print("Cancel")
+                }
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    print("OK")
+                }
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
             if self.noteEditing {
                 let ref = Database.database().reference().child("drafts").child(User.current.uid).child(key!)
 //                let draftURL = draft.ima
                 ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
             } else {
-                let ref = Database.database().reference().child("drafts").child(User.current.uid).childByAutoId()
-                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : DisplayDraftViewController.imageURL])
+                if ((self.imageView.image != nil) && !(draftTitleTextField.text?.isEmpty)! && !textView.text.isEmpty) {
+                    let ref = Database.database().reference().child("drafts").child(User.current.uid).childByAutoId()
+                    ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : DisplayDraftViewController.imageURL])
+                }
             }
             
             

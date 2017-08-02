@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class DelveViewController: UIViewController, IndicatorInfoProvider {
+class DelveViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +21,6 @@ class DelveViewController: UIViewController, IndicatorInfoProvider {
         // Dispose of any resources that can be recreated.
     }
     
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Delve")
-    }
+
     
 }
