@@ -9,6 +9,7 @@
 import UIKit
 import Hero
 import Kingfisher
+import FirebaseDatabase
 
 class HomeViewController: UIViewController {
     
@@ -25,6 +26,28 @@ class HomeViewController: UIViewController {
         //     if let currentCell = sender as? PublishedContentCollectionViewCell,
         //            let vc = segue.destination as? SummaryViewController {
         //            vc.city = currentCell.city
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let ref = Database.database().reference().child("publish").child(User.current.uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
+                return
+            }
+            print(snapshot)
+            self.con.removeAll()
+            
+            if snapshot.count > 0 {
+                for x in 0...snapshot.count - 1 {
+                    let key = snapshot[x].key
+                    let snap = snapshot[x].value as! [String: Any]
+                    let content = Content(title: snap["title"] as! String, summary: snap["text"] as! String, thumbnailURL: snap["thumbnail"] as! String, key: key)
+                    self.con.append(content)
+                    self.collectionView.reloadData()
+                }
+            }
+        })
     }
 }
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

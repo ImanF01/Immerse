@@ -67,6 +67,12 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             }
         })
     }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath) as! AddMaterialTableViewCell
+//        let cell2 = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell") as! FormTableViewCell
+//        cell2.selectedBackgroundView = cell.contentView
+//        
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
