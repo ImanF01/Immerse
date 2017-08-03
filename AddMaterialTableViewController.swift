@@ -19,7 +19,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             tableView.reloadData()
         }
     }
-
+    
     var add: Add?
     var draft: Draft?
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -27,7 +27,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             print("titleText = \(titleText)")
             let newRef = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").childByAutoId()
             newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
-
+            
             if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
                 add = Add(title: titleText, textView: descriptionText, contentURL: urlText)
                 print(addition)
@@ -42,7 +42,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             print("error")
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboard()
@@ -76,7 +76,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addition.count + 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell") as! FormTableViewCell
@@ -90,13 +90,13 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             return cell
         }
         else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
-        let row = indexPath.row - 1
-        let add = addition[row]
-        cell.titleLabel.text = add.title
-        cell.descriptionLabel.text = add.textView
-        cell.urlLabel.text = add.contentURL
-        return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
+            let row = indexPath.row - 1
+            let add = addition[row]
+            cell.titleLabel.text = add.title
+            cell.descriptionLabel.text = add.textView
+            cell.urlLabel.text = add.contentURL
+            return cell
             
         }
     }
@@ -112,22 +112,22 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             self.urlText = textView.text
         }
     }
-
-  
+    
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-                if editingStyle == .delete {
-                    let key = addition[indexPath.row].key
-                    let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(key)
-                    ref.removeValue(completionBlock: { (error, refer) in
-                        if error != nil {
-                            print("error \(String(describing: error))")
-                        }
-                        else {
-                            print(refer)
-                            print("Child Removed Correctly")
-                        }
-                    })
-                    addition.remove(at: indexPath.row)
+        if editingStyle == .delete {
+            let key = addition[indexPath.row].key
+            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(key)
+            ref.removeValue(completionBlock: { (error, refer) in
+                if error != nil {
+                    print("error \(String(describing: error))")
+                }
+                else {
+                    print(refer)
+                    print("Child Removed Correctly")
+                }
+            })
+            addition.remove(at: indexPath.row)
         }
     }
 }

@@ -28,7 +28,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     
-  
+    
     @IBAction func publishButtonTapped(_ sender: Any) {
         count += 1
         let content = Content(title: draftTitleTextField.text!, summary: textView.text, thumbnailURL: (draft?.imageURL)!)
@@ -54,7 +54,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBAction func uploadImage(_ sender: Any) {
         photoHelper.presentActionSheet(from: self)
         photoHelper.completionHandler = { (image) in
-             self.uploadImage.isHidden = true
+            self.uploadImage.isHidden = true
             self.activityIndicatorView.activityIndicatorViewStyle = .whiteLarge
             self.activityIndicatorView.startAnimating()
             StorageService.uploadImage(image, at: StorageReference.newPostImageReference(), completion: { (downloadURL) in
@@ -76,11 +76,11 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         self.hideKeyboard()
         draftTitleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
     }
-
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-
+        
         let imgURL = URL(string: draft?.imageURL ?? "")
         imageView.kf.setImage(with: imgURL, options: [.transition(.fade(0.2))])
     }
