@@ -57,10 +57,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
-        let content = con[indexPath.item]
-        cell.titleLabel.text = content.title
-        let url = URL(string: content.thumbnailURL)
-        cell.imageView.kf.setImage(with: url)
+        cell.content = con[indexPath.item]
+         
         return cell
     }
 

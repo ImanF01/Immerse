@@ -14,43 +14,64 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     var titleText: String?
     var descriptionText: String?
     var urlText: String?
+    var isEditMode = false
+    var editIndex = -1
     var addition = [Add](){
         didSet {
             tableView.reloadData()
         }
     }
     
+
     var add: Add?
     var draft: Draft?
+    
+    @IBAction func plusButtonTapped(_ sender: Any) {
+       
+        
+    }
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
-            print("titleText = \(titleText)")
-            let newRef = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").childByAutoId()
-            newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
-            
-            if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
-                add = Add(title: titleText, textView: descriptionText, contentURL: urlText)
-                print(addition)
-                self.addition.append(add!)
-                self.descriptionText = ""
-                self.titleText = ""
-                self.urlText = ""
+        if !isEditMode {
+            if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
+                print("titleText = \(titleText)")
+                let newRef = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").childByAutoId()
+                newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+                
+                if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
+                    add = Add(title: titleText, textView: descriptionText, contentURL: urlText)
+                    print(addition)
+                    self.addition.append(add!)
+                    self.descriptionText = ""
+                    self.titleText = ""
+                    self.urlText = ""
+                }
             }
-        }
-        else
-        {
-            print("error")
+            else
+            {
+                print("error")
+            }
+        } else {
+            //If reference is needed then don't replace with new Add object but edit the values individualy like so:
+            // addition[editIndex].title = titleText
+            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info")
+    
+            if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
+                addition[editIndex] = Add(title: titleText, textView: descriptionText, contentURL: urlText)
+                ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+            }
+            
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboard()
+//        self.hideKeyboard()
         
     }
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        editIndex = -1
         let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as?
@@ -67,18 +88,21 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             }
         })
     }
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath) as! AddMaterialTableViewCell
-//        let cell2 = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell") as! FormTableViewCell
-//        cell2.selectedBackgroundView = cell.contentView
-//        
-//    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row != 0 {
+            editIndex = indexPath.row - 1
+            
+            self.descriptionText = addition[editIndex].textView
+            self.titleText = addition[editIndex].title
+            self.urlText = addition[editIndex].contentURL
+            
+            tableView.reloadData()
+            
+            isEditMode = true
+        }
+        
     }
-    
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addition.count + 1
     }
@@ -86,11 +110,11 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell : FormTableViewCell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell") as! FormTableViewCell
-            cell.titleTextView.text = ""
+            cell.titleTextView.text = titleText ?? ""
             cell.titleTextView.delegate = self
-            cell.descriptionTextView.text = ""
+            cell.descriptionTextView.text = descriptionText ?? ""
             cell.descriptionTextView.delegate = self
-            cell.urlLabel.text = ""
+            cell.urlLabel.text = urlText ?? ""
             cell.urlLabel.delegate = self
             print("First cell displayed")
             return cell
@@ -119,11 +143,17 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let key = addition[indexPath.row].key
-            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(key)
+            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(addition[indexPath.row - 1].key)
             ref.removeValue(completionBlock: { (error, refer) in
                 if error != nil {
                     print("error \(String(describing: error))")
@@ -133,26 +163,26 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
                     print("Child Removed Correctly")
                 }
             })
-            addition.remove(at: indexPath.row)
+            addition.remove(at: indexPath.row - 1)
+            
         }
     }
 }
 
-
-extension UIViewController
-{
-    func hideKeyboard()
-    {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(UIViewController.dismissKeyboard))
-        
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard()
-    {
-        view.endEditing(true)
-    }
-    
-}
+//extension UIViewController
+//{
+//    func hideKeyboard()
+//    {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(UIViewController.dismissKeyboard))
+//        
+//        view.addGestureRecognizer(tap)
+//    }
+//    
+//    func dismissKeyboard()
+//    {
+//        view.endEditing(true)
+//    }
+//    
+//}

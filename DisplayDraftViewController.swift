@@ -88,8 +88,10 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         imageView.kf.setImage(with: imgURL, options: [.transition(.fade(0.2))])
     }
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        if ((self.imageView.image == nil) || (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty) {
+    @IBAction func saveButtonTapped(_ sender: Any)
+    {
+        if ((self.imageView.image == nil) || (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty)
+        {
             let alertController = UIAlertController(title: "Error", message: "Wait for the image to load and fill in the title and summary.", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
                 print("Cancel")
@@ -102,20 +104,26 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             self.present(alertController, animated: true, completion: nil)
             
         }
-        if self.noteEditing {
+        if self.noteEditing
+        {
             let ref = Database.database().reference().child("drafts").child(User.current.uid).child(key!)
-            if self.imageURL != nil {
+            if self.imageURL != nil
+            {
                 ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])
-            } else {
+            } else
+            {
                 ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
 
             }
-        } else {
-            if ((self.imageView.image != nil) && !(draftTitleTextField.text?.isEmpty)! && !textView.text.isEmpty) {
+        } else
+        {
+            if ((self.imageView.image != nil) && !(draftTitleTextField.text?.isEmpty)! && !textView.text.isEmpty)
+            {
                 let ref = Database.database().reference().child("drafts").child(User.current.uid).childByAutoId()
                 ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : imageURL])
             }
         }
+    }
 //        
 //        if let draft = draft
 //        {
@@ -129,7 +137,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
 //            let newDraft = Draft(title: draftTitleTextField.text ?? "", content: textView.text ?? "", imageURL: imageURL ?? "")
 //            newDraft.modificationTime = Date()
 //        }
-    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -142,18 +150,23 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         }
         
     }
-    override func hideKeyboard()
+}
+extension UIViewController
+{
+    func hideKeyboard()
     {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(UIViewController.dismissKeyboard))
-        
+
         view.addGestureRecognizer(tap)
     }
-    
-    override func dismissKeyboard()
+
+    func dismissKeyboard()
     {
         view.endEditing(true)
     }
-    
+
 }
+
+    
