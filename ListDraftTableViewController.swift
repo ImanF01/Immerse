@@ -63,10 +63,12 @@ class ListDraftTableViewController: UITableViewController {
                 print("Table view cell tapped")
                 let indexPath = tableView.indexPathForSelectedRow!
                 let draft = drafts[indexPath.row]
+                
                 let displayDraftViewController = segue.destination as! DisplayDraftViewController
                 displayDraftViewController.draft = draft
                 displayDraftViewController.noteEditing = true
                 displayDraftViewController.key = drafts[indexPath.row].key
+                
             } else if identifier == "addDraft" {
                 print("+ button tapped")
                 let displayDraft = segue.destination as! DisplayDraftViewController

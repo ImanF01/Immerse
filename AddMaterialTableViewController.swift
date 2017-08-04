@@ -16,6 +16,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     var urlText: String?
     var isEditMode = false
     var editIndex = -1
+    var indexPath: Int?
     var addition = [Add](){
         didSet {
             tableView.reloadData()
@@ -27,7 +28,11 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     var draft: Draft?
     
     @IBAction func plusButtonTapped(_ sender: Any) {
-       
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! FormTableViewCell
+        cell.titleTextView.text = ""
+        cell.descriptionTextView.text = ""
+        cell.urlLabel.text = ""
         
     }
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -53,18 +58,18 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         } else {
             //If reference is needed then don't replace with new Add object but edit the values individualy like so:
             // addition[editIndex].title = titleText
-            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info")
-    
+            let key = addition[indexPath!].key
+            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(key)
             if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
                 addition[editIndex] = Add(title: titleText, textView: descriptionText, contentURL: urlText)
                 ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
             }
-            
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        self.hideKeyboard()
         
     }
@@ -122,7 +127,9 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddMaterialTableViewCell", for: indexPath) as! AddMaterialTableViewCell
             let row = indexPath.row - 1
+            self.indexPath = row
             let add = addition[row]
+//            self.key = add.key
             cell.titleLabel.text = add.title
             cell.descriptionLabel.text = add.textView
             cell.urlLabel.text = add.contentURL

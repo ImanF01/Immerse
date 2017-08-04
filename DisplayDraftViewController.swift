@@ -17,6 +17,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var noteEditing = false
     var key: String?
     var draft: Draft?
+    var add: Add?
     var count = 0
     var imageURL: String?
     var con = [Content]()
