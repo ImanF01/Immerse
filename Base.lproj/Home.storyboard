@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -86,13 +85,11 @@
                                             <constraint firstItem="xFQ-U4-zvp" firstAttribute="leading" secondItem="O4C-Wf-Mfc" secondAttribute="leading" id="NLp-Sx-gJX"/>
                                             <constraint firstItem="xFQ-U4-zvp" firstAttribute="top" secondItem="O4C-Wf-Mfc" secondAttribute="top" id="u0K-Cb-2jf"/>
                                         </constraints>
+                                        <size key="customSize" width="375" height="200"/>
                                         <connections>
                                             <outlet property="imageView" destination="xFQ-U4-zvp" id="v9v-A1-HSE"/>
                                             <outlet property="titleLabel" destination="Gb0-BM-C88" id="qHn-xd-WfP"/>
-                                            <segue destination="YUP-fK-NFg" kind="presentation" id="g87-EP-Mk7">
-                                                <segue key="commit" inheritsFrom="parent" id="ZWH-Nc-eGk"/>
-                                                <segue key="preview" inheritsFrom="commit" id="iE1-Kx-Ixh"/>
-                                            </segue>
+                                            <segue destination="YUP-fK-NFg" kind="presentation" identifier="toSummaryVC" id="g87-EP-Mk7"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -121,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="741.60000000000002" y="1446.9265367316343"/>
         </scene>
-        <!--Summary View Controller-->
+        <!--SummaryViewController-->
         <scene sceneID="zoB-bp-zl5">
             <objects>
-                <viewController id="YUP-fK-NFg" customClass="SummaryViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SummaryViewController" id="YUP-fK-NFg" customClass="SummaryViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mne-p5-R9P"/>
                         <viewControllerLayoutGuide type="bottom" id="wVp-5R-yu6"/>
@@ -134,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x26-UK-RxP">
-                                <rect key="frame" x="85" y="163" width="54" height="21"/>
+                                <rect key="frame" x="85" y="163" width="236" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -152,7 +149,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swv-Pb-q7q">
-                                <rect key="frame" x="91" y="250" width="73" height="21"/>
+                                <rect key="frame" x="91" y="250" width="230" height="159"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -170,6 +167,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bK8-yv-WcV"/>
                     <connections>
                         <outlet property="summaryLabel" destination="swv-Pb-q7q" id="bqq-Hq-170"/>
                         <outlet property="titleLabel" destination="x26-UK-RxP" id="dV3-ff-878"/>
@@ -177,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkc-54-zUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="1447"/>
+            <point key="canvasLocation" x="1632.8" y="1446.9265367316343"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="n5v-9c-sUv">
@@ -195,14 +193,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IB1-Is-Fg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="2202"/>
+            <point key="canvasLocation" x="1633" y="2194"/>
         </scene>
     </scenes>
     <resources>
         <image name="tab_home_black" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="g87-EP-Mk7"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

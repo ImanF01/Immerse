@@ -12,15 +12,20 @@ import Firebase
 
 class ProfileViewController: UIViewController {
 
+   
     @IBOutlet weak var usernameLabel: UILabel!
+  
+    @IBOutlet weak var numberOfContributions: UILabel!
     
+    @IBAction func logOutTapped(_ sender: Any) {
+    }
     override func viewDidLoad() {
-        super.viewDidLoad()
-        let ref = Database.database().reference().child("users").child(User.current.uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? [String : Any]
-            self.usernameLabel.text = value?["username"] as? String
-        })
+//        super.viewDidLoad()
+//        let ref = Database.database().reference().child("users").child(User.current.uid)
+//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//            let value = snapshot.value as? [String : Any]
+//            self.usernameLabel.text = value?["username"] as? String
+//        })
     }
 
     override func didReceiveMemoryWarning() {

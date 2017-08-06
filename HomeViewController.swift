@@ -14,20 +14,22 @@ import FirebaseDatabase
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     var con = [Content]()
-    
+    var post: Content?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
    
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //     if let currentCell = sender as? PublishedContentCollectionViewCell,
-        //            let vc = segue.destination as? SummaryViewController {
-        //            vc.city = currentCell.city
-    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let vc = segue.destination as! SummaryViewController
+        let indexPath = collectionView.indexPathsForSelectedItems!
+        let indexPathInt = indexPath[indexPath.count - 1]
+        vc.key = con[indexPathInt.item].key
     
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let ref = Database.database().reference().child("publish").child(User.current.uid)
@@ -49,16 +51,22 @@ class HomeViewController: UIViewController {
             }
         })
     }
+    
 }
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+   
+
+    var collectionViewContentSize: CGSize {
+        return CGSize(width: 375, height: 200)
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return con.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
         cell.content = con[indexPath.item]
-         
         return cell
     }
 

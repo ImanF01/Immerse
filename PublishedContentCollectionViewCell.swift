@@ -9,11 +9,14 @@
 import UIKit
 import Hero
 import Kingfisher
+import Firebase
 
 class PublishedContentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+
+    
     
     var content: Content? {
         didSet {

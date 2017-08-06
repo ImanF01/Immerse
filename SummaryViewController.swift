@@ -8,6 +8,7 @@
 
 import UIKit
 import Hero
+import FirebaseDatabase
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
@@ -18,20 +19,27 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     var content: Content?
+    var key: String?
 
     var panGR: UIPanGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let ref = Database.database().reference().child("publish").child(User.current.uid).child(key!)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? [String : Any]
+            self.titleLabel.text = value?["title"] as? String
+            self.summaryLabel.text = value?["text"] as? String
         
-        if let content = content {
-            let title  = content.title
-            titleLabel.text = title
-            titleLabel.heroID = "\(title)_title"
-            titleLabel.heroModifiers = [.zPosition(4)]
-            summaryLabel.heroID = "\(title)_summary"
-            summaryLabel.heroModifiers = [.zPosition(4)]
-            summaryLabel.text = content.summary
-        }
+        })
+//        if let content = content {
+//            let title  = content.title
+//            titleLabel.text = title
+//            titleLabel.heroID = "\(title)_title"
+//            titleLabel.heroModifiers = [.zPosition(4)]
+//            summaryLabel.heroID = "\(title)_summary"
+//            summaryLabel.heroModifiers = [.zPosition(4)]
+//            summaryLabel.text = content.summary
+//        }
         panGR = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gestureRecognizer:)))
         view.addGestureRecognizer(panGR)
     }

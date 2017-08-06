@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase.FIRDataSnapshot
 
 struct Content {
 
@@ -29,5 +30,7 @@ struct Content {
         self.thumbnailURL = ""
         self.key = ""
     }
+
+    
     
 }
