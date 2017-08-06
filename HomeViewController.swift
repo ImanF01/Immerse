@@ -7,7 +7,6 @@
 
 
 import UIKit
-import Hero
 import Kingfisher
 import FirebaseDatabase
 
@@ -66,7 +65,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
-        cell.content = con[indexPath.item]
+        let url = URL(string: con[indexPath.item].thumbnailURL)
+        cell.imageView.kf.setImage(with: url)
+        cell.titleLabel.text = con[indexPath.item].title
         return cell
     }
 

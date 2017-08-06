@@ -118,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="741.60000000000002" y="1446.9265367316343"/>
         </scene>
-        <!--SummaryViewController-->
+        <!--Summary View Controller-->
         <scene sceneID="zoB-bp-zl5">
             <objects>
-                <viewController title="SummaryViewController" id="YUP-fK-NFg" customClass="SummaryViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YUP-fK-NFg" customClass="SummaryViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mne-p5-R9P"/>
                         <viewControllerLayoutGuide type="bottom" id="wVp-5R-yu6"/>
@@ -131,11 +131,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x26-UK-RxP">
-                                <rect key="frame" x="85" y="163" width="236" height="21"/>
+                                <rect key="frame" x="16" y="112" width="343" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="0"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UU-IG-Icb">
                                 <rect key="frame" x="133" y="600" width="81" height="30"/>
@@ -148,13 +151,6 @@
                                     <segue destination="ChM-LH-1dR" kind="presentation" id="rYX-cX-1HA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swv-Pb-q7q">
-                                <rect key="frame" x="91" y="250" width="230" height="159"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bha-tR-50e">
                                 <rect key="frame" x="16" y="37" width="82" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -164,12 +160,21 @@
                                     <action selector="hero_dismissViewController" destination="bkc-54-zUl" eventType="touchUpInside" id="XNm-Bz-WzU"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Summary Text View" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dR-3e-tPg">
+                                <rect key="frame" x="16" y="182" width="343" height="381"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bK8-yv-WcV"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="summaryLabel" destination="swv-Pb-q7q" id="bqq-Hq-170"/>
+                        <outlet property="summaryTextView" destination="5dR-3e-tPg" id="gbV-VE-QnH"/>
                         <outlet property="titleLabel" destination="x26-UK-RxP" id="dV3-ff-878"/>
                     </connections>
                 </viewController>

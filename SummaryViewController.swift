@@ -10,39 +10,39 @@ import UIKit
 import Hero
 import FirebaseDatabase
 
-func + (left: CGPoint, right: CGPoint) -> CGPoint {
-    return CGPoint(x: left.x + right.x, y: left.y + right.y)
-}
 
 class SummaryViewController: UIViewController {
-
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var summaryTextView: UITextView!
+
     var content: Content?
     var key: String?
-
     var panGR: UIPanGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let ref = Database.database().reference().child("publish").child(User.current.uid).child(key!)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String : Any]
             self.titleLabel.text = value?["title"] as? String
-            self.summaryLabel.text = value?["text"] as? String
-        
+            self.summaryTextView.text = value?["text"] as? String
         })
-//        if let content = content {
-//            let title  = content.title
-//            titleLabel.text = title
-//            titleLabel.heroID = "\(title)_title"
-//            titleLabel.heroModifiers = [.zPosition(4)]
-//            summaryLabel.heroID = "\(title)_summary"
-//            summaryLabel.heroModifiers = [.zPosition(4)]
-//            summaryLabel.text = content.summary
-//        }
+        
+        titleLabel.text = content?.title
+        summaryTextView.text = content?.summary
+        
+        if let content = content {
+            let title  = content.title
+            titleLabel.heroID = "\(title)_title"
+            titleLabel.heroModifiers = [.zPosition(5)]
+            summaryTextView.heroID = "\(title)_summary"
+            summaryTextView.heroModifiers = [.zPosition(5)]
+        }
+        
         panGR = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gestureRecognizer:)))
         view.addGestureRecognizer(panGR)
     }
+    
     func handlePan(gestureRecognizer:UIPanGestureRecognizer) {
         // calculate the progress based on how far the user moved
         let translation = panGR.translation(in: nil)
@@ -56,8 +56,8 @@ class SummaryViewController: UIViewController {
             Hero.shared.update(progress: Double(progress))
             
             // update views' position (limited to only vertical scroll)
-            Hero.shared.apply(modifiers: [.position(CGPoint(x:titleLabel.center.x, y:translation.y + titleLabel.center.y))], to: titleLabel)
-            Hero.shared.apply(modifiers: [.position(CGPoint(x:summaryLabel.center.x, y:translation.y + summaryLabel.center.y))], to: summaryLabel)
+            Hero.shared.apply(modifiers: [.position(CGPoint(x:titleLabel.center.x, y:translation.y + summaryTextView.center.y))], to: titleLabel)
+            Hero.shared.apply(modifiers: [.position(CGPoint(x:summaryTextView.center.x, y:translation.y + summaryTextView.center.y))], to: summaryTextView)
         default:
             // end or cancel the transition based on the progress and user's touch velocity
             if progress + panGR.velocity(in: nil).y / view.bounds.height > 0.3 {
@@ -68,6 +68,5 @@ class SummaryViewController: UIViewController {
         }
     }
 }
-
 
 
