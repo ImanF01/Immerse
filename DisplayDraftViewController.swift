@@ -20,8 +20,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var add: Add?
     var count = 0
     var imageURL: String?
-    var con = [Content]()
-    var content: Content?
     @IBOutlet weak var imageView: UIImageView!
     let photoHelper = PhotoHelper()
     @IBOutlet weak var draftTitleTextField: UITextField!
@@ -39,8 +37,9 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         else {
             ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
         }
+
     }
-    
+
     @IBAction func extraInfoButton(_ sender: Any) {
         if (draftTitleTextField.text?.isEmpty)! && textView.text.isEmpty {
             let alertController = UIAlertController(title: "Error", message: "Fill in the title and summary before continuing.", preferredStyle: UIAlertControllerStyle.alert)
@@ -125,20 +124,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             }
         }
     }
-//        
-//        if let draft = draft
-//        {
-//            draft.title = draftTitleTextField.text ?? ""
-//            draft.content = textView.text ?? ""
-//            draft.imageURL = imageURL ?? ""
-////            let listDraftTableViewController = segue.destination as! ListDraftTableViewController
-////            listDraftTableViewController.tableView.reloadData()
-//        } else
-//        {
-//            let newDraft = Draft(title: draftTitleTextField.text ?? "", content: textView.text ?? "", imageURL: imageURL ?? "")
-//            newDraft.modificationTime = Date()
-//        }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {

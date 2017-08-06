@@ -1,18 +1,18 @@
 //
-//  AddMaterialTableViewCell.swift
+//  ExtraInfoTableViewCell.swift
 //  Immerse
 //
-//  Created by Iman F on 7/25/17.
+//  Created by Iman F on 8/6/17.
 //  Copyright © 2017 Iman F (group project). All rights reserved.
 //
 
 import UIKit
 
-class AddMaterialTableViewCell: UITableViewCell {
+class ExtraInfoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

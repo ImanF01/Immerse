@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var con = [Content]()
-    var post: Content?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,6 +27,7 @@ class HomeViewController: UIViewController {
         vc.key = con[indexPathInt.item].key
     
     }
+    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

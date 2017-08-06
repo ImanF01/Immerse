@@ -398,6 +398,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="GgD-FS-pYT">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ak1-FH-hSp">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sW5-zJ-Z0K">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Publish"/>
+                                <connections>
+                                    <action selector="publishButtonTapped:" destination="CIN-jJ-kFa" eventType="touchUpInside" id="ajB-y6-JWk"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ncu-0g-3iH">
                             <rect key="frame" x="158" y="7" width="59" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

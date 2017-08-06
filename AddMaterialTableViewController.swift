@@ -17,15 +17,38 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     var isEditMode = false
     var editIndex = -1
     var indexPath: Int?
+    var add: Add?
+    var draft: Draft?
     var addition = [Add](){
         didSet {
             tableView.reloadData()
         }
     }
-    
 
-    var add: Add?
-    var draft: Draft?
+    @IBAction func publishButtonTapped(_ sender: Any) {
+        print("Publish button tapped")
+//        let index = self.tableView.indexPathForSelectedRow!
+        
+        let newRef = Database.database().reference().child("publish").child(User.current.uid)
+        
+            newRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                guard let snapshot = snapshot.children.allObjects as?
+                    [DataSnapshot] else { return }
+                
+                let key = snapshot[snapshot.count - 1].key
+                print("Key = \(String(describing: key))")
+                
+            let ref = Database.database().reference().child("publish").child(User.current.uid).child(key).child("extra info").childByAutoId()
+//            if index.row == 0
+//            {
+                if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
+                {
+                    ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+                }
+//            }
+        })
+    }
     
     @IBAction func plusButtonTapped(_ sender: Any) {
         let indexPath = IndexPath(row: 0, section: 0)
@@ -38,7 +61,6 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     @IBAction func saveButtonTapped(_ sender: Any) {
         if !isEditMode {
             if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
-                print("titleText = \(titleText)")
                 let newRef = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").childByAutoId()
                 newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                 
@@ -53,7 +75,16 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             }
             else
             {
-                print("error")
+                let alertController = UIAlertController(title: "Error", message: "Fill in all fields before saving.", preferredStyle: UIAlertControllerStyle.alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                    print("Cancel")
+                }
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    print("OK")
+                }
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         } else {
             //If reference is needed then don't replace with new Add object but edit the values individualy like so:
@@ -69,7 +100,6 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //        self.hideKeyboard()
         
     }
@@ -175,6 +205,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         }
     }
 }
+
 
 //extension UIViewController
 //{
