@@ -70,7 +70,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: view.bounds.height / CGFloat(con.count))
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: view.bounds.width, height: view.bounds.height / CGFloat(con.count))
+//    }
 }

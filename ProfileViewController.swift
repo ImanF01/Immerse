@@ -47,7 +47,9 @@ class ProfileViewController: UIViewController {
                     let key = snapshot[x].key
                     let snap = snapshot[x].value as! [String: Any]
                     self.contributionCount = snapshot.count
-                    let contributionRef = Database.database().reference().child("users").child(User.current.uid).updateChildValues(["contribution_count" : "\(self.contributionCount)"])
+                    if let contribution = self.contributionCount {
+                        let contributionRef = Database.database().reference().child("users").child(User.current.uid).updateChildValues(["contribution_count" : "\(contribution)"])
+                    }
                     let contentArray = Content(title: snap["title"] as! String, summary: snap["text"] as! String, thumbnailURL: snap["thumbnail"] as! String, key: key)
                     self.content.append(contentArray)
                     self.collectionView.reloadData()
