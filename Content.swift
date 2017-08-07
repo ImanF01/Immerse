@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import FirebaseDatabase.FIRDataSnapshot
 
 struct Content {
 
@@ -16,6 +15,7 @@ struct Content {
     var summary: String
     var thumbnailURL: String
     var key: String = ""
+    
     
     init(title: String, summary: String, thumbnailURL: String, key: String) {
         self.title = title
@@ -30,6 +30,7 @@ struct Content {
         self.thumbnailURL = ""
         self.key = ""
     }
+    
 
     
     

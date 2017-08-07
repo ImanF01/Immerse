@@ -29,7 +29,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         print("Publish button tapped")
 //        let index = self.tableView.indexPathForSelectedRow!
         
-        let newRef = Database.database().reference().child("publish").child(User.current.uid)
+        let newRef = Database.database().reference().child("publish")
         
             newRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -39,7 +39,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
                 let key = snapshot[snapshot.count - 1].key
                 print("Key = \(String(describing: key))")
                 
-            let ref = Database.database().reference().child("publish").child(User.current.uid).child(key).child("extra info").childByAutoId()
+            let ref = Database.database().reference().child("publish").child(key).child("extra info").childByAutoId()
 //            if index.row == 0
 //            {
                 if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
@@ -170,7 +170,6 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             let row = indexPath.row - 1
             self.indexPath = row
             let add = addition[row]
-//            self.key = add.key
             cell.titleLabel.text = add.title
             cell.descriptionLabel.text = add.textView
             cell.urlLabel.text = add.contentURL

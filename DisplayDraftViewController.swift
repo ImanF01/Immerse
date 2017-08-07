@@ -24,24 +24,38 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBOutlet weak var draftTitleTextField: UITextField!
     @IBOutlet weak var textView: GrowingTextView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    
+    @IBOutlet weak var publishButton: UIBarButtonItem!
     
     
     @IBAction func publishButtonTapped(_ sender: Any) {
-        
-        let ref = Database.database().reference().child("publish").child(User.current.uid).childByAutoId()
-        if imageURL != nil {
-            ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])
+        publishButton.isEnabled = false
+        if (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty || (imageView.image == nil){
+            let alertController = UIAlertController(title: "Wait", message: "Fill in all fields before publishing", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                print("Cancel")
+            }
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                print("OK")
+            }
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
         }
         else {
-            ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
+            publishButton.isEnabled = true
+            let ref = Database.database().reference().child("publish").child(User.current.uid).childByAutoId()
+            if imageURL != nil {
+                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])
+            }
+            else {
+                ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
+            }
         }
-
     }
 
     @IBAction func extraInfoButton(_ sender: Any) {
         if (draftTitleTextField.text?.isEmpty)! && textView.text.isEmpty {
-            let alertController = UIAlertController(title: "Error", message: "Fill in the title and summary before continuing.", preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: "Wait", message: "Fill in the title and summary before continuing.", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
                 print("Cancel")
             }
@@ -91,7 +105,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     {
         if ((self.imageView.image == nil) || (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty)
         {
-            let alertController = UIAlertController(title: "Error", message: "Wait for the image to load and fill in the title and summary.", preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: "Wait", message: "Wait for the image to load and fill in the title and summary.", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
                 print("Cancel")
             }

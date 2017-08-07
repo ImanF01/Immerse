@@ -22,7 +22,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9Vh-t4-2bh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Vh-t4-2bh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -249,6 +249,7 @@
                         <outlet property="activityIndicatorView" destination="CJw-4T-jel" id="pPV-ub-EmO"/>
                         <outlet property="draftTitleTextField" destination="Ae9-q9-WwC" id="HEg-Le-q6T"/>
                         <outlet property="imageView" destination="RSo-Xm-VCe" id="ces-sp-6mU"/>
+                        <outlet property="publishButton" destination="0ar-Sa-1ud" id="kag-nO-Uqo"/>
                         <outlet property="textView" destination="2Oh-Uw-BpV" id="HGL-Sw-iH4"/>
                     </connections>
                 </viewController>
@@ -261,7 +262,7 @@
         <scene sceneID="SgF-hZ-ubs">
             <objects>
                 <tableViewController id="CIN-jJ-kFa" customClass="AddMaterialTableViewController" customModule="Immerse" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="187" sectionHeaderHeight="28" sectionFooterHeight="28" id="2wA-Uc-KQp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="187" sectionHeaderHeight="28" sectionFooterHeight="28" id="2wA-Uc-KQp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -439,14 +440,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErF-x4-hLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="628" y="1736.5817091454273"/>
+            <point key="canvasLocation" x="580" y="1737"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XNW-Ot-eIV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GRK-uW-YQ1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u8u-Ff-lVb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u8u-Ff-lVb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     var con = [Content]()
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.hideKeyboard()
     }
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -49,6 +50,19 @@ class HomeViewController: UIViewController {
             }
         })
     }
+//    override func hideKeyboard()
+//    {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(UIViewController.dismissKeyboard))
+//        
+//        view.addGestureRecognizer(tap)
+//    }
+//    
+//    override func dismissKeyboard()
+//    {
+//        view.endEditing(true)
+//    }
     
 }
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
@@ -70,7 +84,4 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.bounds.width, height: view.bounds.height / CGFloat(con.count))
-//    }
 }

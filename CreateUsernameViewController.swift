@@ -40,7 +40,6 @@ class CreateUsernameViewController: UIViewController {
       //  let usernameTextField = SkyFloatingLabelTextField(frame: CGRectMake(10, 10, 200, 45))
         usernameTextField.placeholder = "username"
         usernameTextField.title = "Your username"
-        self.view.addSubview(usernameTextField)
         self.hideKeyboard()
     }
 

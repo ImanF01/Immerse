@@ -9,12 +9,14 @@
 import UIKit
 import FirebaseDatabase
 import Kingfisher
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     var user: User!
     var content = [Content]()
     var username: String?
     var contributionCount: Int?
+    var authHandle: AuthStateDidChangeListenerHandle?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -24,9 +26,35 @@ class ProfileViewController: UIViewController {
             let value = snapshot.value as? [String : Any]
             self.username = value?["username"] as? String
         })
+        
+        authHandle = Auth.auth().addStateDidChangeListener() { [unowned self] (auth, user) in
+            guard user == nil else { return }
+            let loginViewController = UIStoryboard.initialViewController(for: .login)
+            self.view.window?.rootViewController = loginViewController
+            self.view.window?.makeKeyAndVisible()
+        }
+
 
     }
 
+    @IBAction func logOutTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let signOutAction = UIAlertAction(title: "Sign Out", style: .default) { _ in
+            do {
+                try Auth.auth().signOut()
+                print("log out user")
+            } catch let error as NSError {
+                assertionFailure("Error signing out: \(error.localizedDescription)")
+            }
+        }
+        alertController.addAction(signOutAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,7 +76,7 @@ class ProfileViewController: UIViewController {
                     let snap = snapshot[x].value as! [String: Any]
                     self.contributionCount = snapshot.count
                     if let contribution = self.contributionCount {
-                        let contributionRef = Database.database().reference().child("users").child(User.current.uid).updateChildValues(["contribution_count" : "\(contribution)"])
+                        _ = Database.database().reference().child("users").child(User.current.uid).updateChildValues(["contribution_count" : "\(contribution)"])
                     }
                     let contentArray = Content(title: snap["title"] as! String, summary: snap["text"] as! String, thumbnailURL: snap["thumbnail"] as! String, key: key)
                     self.content.append(contentArray)
@@ -84,20 +112,5 @@ extension ProfileViewController: UICollectionViewDataSource {
             headerView.numberOfContributions.text = "\(String(describing: contribution))"
         }
         return headerView
-    }
-}
-extension ProfileViewController: ProfileHeaderViewDelegate {
-    func didTapSettingsButton(_ button: UIButton, on headerView: ProfileHeaderView) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let signOutAction = UIAlertAction(title: "Sign Out", style: .default) { _ in
-            print("log out user")
-        }
-        alertController.addAction(signOutAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true)
     }
 }

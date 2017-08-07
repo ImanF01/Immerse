@@ -13,6 +13,9 @@ class ExtraInfoViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var contentKey: String?
+    var titleText: String?
+    var urlText: String?
+    var descriptionText: String?
     
     var extraInfo = [ExtraInfo]()
     
@@ -26,6 +29,33 @@ class ExtraInfoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func optionsButtonTapped(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
+            let ref = Database.database().reference().child("flagged").child(self.contentKey!).child("extra info")
+            ref.setValue(["title" : self.titleText, "url" : self.urlText, "description" : self.descriptionText])
+//            let specifyController = UIAlertController(title: nil, message: "Specify the inappropriate content", preferredStyle: .alert)
+//            let input = specifyController.textFields?[0]
+//            if input?.text != nil {
+//
+//            }
+//            specifyController.addTextField(configurationHandler: { (textField) -> Void in
+//                textField.placeholder = "Explain"
+//            })
+                let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
+                okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(okAlert, animated: true)
+        }
+        alertController.addAction(flagAction)
+        
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    alertController.addAction(cancelAction)
+    present(alertController, animated: true, completion: nil)
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,10 +89,12 @@ extension ExtraInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ExtraInfoTableViewCell", for: indexPath) as! ExtraInfoTableViewCell
-        
     cell.titleLabel.text = extraInfo[indexPath.row].title
+    self.titleText = cell.titleLabel.text
     cell.urlLabel.text = extraInfo[indexPath.row].url
+    self.urlText = cell.urlLabel.text
     cell.descriptionLabel.text = extraInfo[indexPath.row].description
+    self.descriptionText = cell.descriptionLabel.text
         
     return cell
     }

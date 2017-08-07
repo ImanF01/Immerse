@@ -39,12 +39,9 @@ class LoginViewController: UIViewController {
 }
 extension LoginViewController: FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
-        if let error = error {
-            assertionFailure("Error signing in: \(error.localizedDescription)")
-        }
+        if let error = error {    }
         guard let user = user
             else { return }
-        print("Hi")
         let userRef = Database.database().reference().child("users").child(user.uid)
         userRef.observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
             if let user = User(snapshot: snapshot) {

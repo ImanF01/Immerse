@@ -67,7 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="g8D-iv-JLa" id="DWj-ZK-SuE"/>
-                        <segue destination="UlL-jB-IeS" kind="show" identifier="toCreateUsername" id="UAr-c2-fdk"/>
+                        <segue destination="UlL-jB-IeS" kind="presentation" identifier="toCreateUsername" id="UAr-c2-fdk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwB-l1-aDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -127,7 +127,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gwO-HE-ZuP" secondAttribute="trailing" id="7A1-HS-XYn"/>
+                                    <constraint firstAttribute="width" constant="273" id="LSl-QS-1AT"/>
                                     <constraint firstItem="gwO-HE-ZuP" firstAttribute="leading" secondItem="yH7-Dw-ayl" secondAttribute="leading" id="VF4-re-JCa"/>
+                                    <constraint firstItem="gwO-HE-ZuP" firstAttribute="top" secondItem="yH7-Dw-ayl" secondAttribute="top" constant="57" id="Wqt-A1-on9"/>
+                                    <constraint firstAttribute="height" constant="175" id="Ysu-c1-U6W"/>
+                                    <constraint firstAttribute="bottom" secondItem="gwO-HE-ZuP" secondAttribute="bottom" constant="74" id="cJy-xZ-WZg"/>
                                     <constraint firstItem="Tay-3c-Brr" firstAttribute="leading" secondItem="yH7-Dw-ayl" secondAttribute="leading" id="hPW-hu-NYP"/>
                                     <constraint firstAttribute="trailing" secondItem="Tay-3c-Brr" secondAttribute="trailing" id="hQP-Ig-Ds8"/>
                                 </constraints>
@@ -136,7 +140,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="yH7-Dw-ayl" secondAttribute="trailing" constant="35" id="AVj-Ns-zuH"/>
-                            <constraint firstItem="yH7-Dw-ayl" firstAttribute="top" secondItem="s5M-8Z-lNI" secondAttribute="bottom" constant="45" id="Yuy-LK-86a"/>
+                            <constraint firstItem="eLn-DK-L1x" firstAttribute="top" secondItem="yH7-Dw-ayl" secondAttribute="bottom" constant="427" id="FPY-k7-Ypm"/>
+                            <constraint firstItem="yH7-Dw-ayl" firstAttribute="top" secondItem="fCh-sL-Sw5" secondAttribute="topMargin" constant="65" id="ey4-zx-PyZ"/>
                             <constraint firstItem="yH7-Dw-ayl" firstAttribute="leading" secondItem="fCh-sL-Sw5" secondAttribute="leadingMargin" constant="35" id="wyh-6E-oxz"/>
                         </constraints>
                     </view>
