@@ -56,6 +56,16 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         cell.titleTextView.text = ""
         cell.descriptionTextView.text = ""
         cell.urlLabel.text = ""
+        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
+        {
+            if (!(descriptionText.isEmpty) || !(titleText.isEmpty) || !(urlText.isEmpty))
+            {
+                self.descriptionText = ""
+                self.titleText = ""
+                self.urlText = ""
+            }
+        }
+        isEditMode = false
         
     }
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -65,9 +75,10 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
                 newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                 
                 if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
+                    
                     add = Add(title: titleText, textView: descriptionText, contentURL: urlText)
-                    print(addition)
                     self.addition.append(add!)
+                    print(addition)
                     self.descriptionText = ""
                     self.titleText = ""
                     self.urlText = ""
@@ -189,21 +200,23 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    
         if editingStyle == .delete {
-            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(addition[indexPath.row - 1].key)
-            ref.removeValue(completionBlock: { (error, refer) in
-                if error != nil {
-                    print("error \(String(describing: error))")
-                }
-                else {
-                    print(refer)
-                    print("Child Removed Correctly")
-                }
-            })
-            addition.remove(at: indexPath.row - 1)
-            
+//            if let index = tableView.indexPathForSelectedRow {
+                let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(addition[indexPath.item - 1].key)
+                ref.removeValue(completionBlock: { (error, refer) in
+                    if error != nil {
+                        print("error \(String(describing: error))")
+                    }
+                    else {
+                        print(refer)
+                        print("Child Removed Correctly")
+                    }
+                })
+                addition.remove(at: indexPath.row - 1)
+            }
         }
-    }
+//    }
 }
 
 

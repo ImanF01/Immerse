@@ -43,6 +43,11 @@ class SummaryViewController: UIViewController {
         view.addGestureRecognizer(panGR)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ExtraInfoViewController
+        vc.contentKey = self.key
+    }
+    
     func handlePan(gestureRecognizer:UIPanGestureRecognizer) {
         // calculate the progress based on how far the user moved
         let translation = panGR.translation(in: nil)
