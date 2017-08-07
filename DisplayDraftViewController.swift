@@ -18,7 +18,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var key: String?
     var draft: Draft?
     var add: Add?
-    var count = 0
     var imageURL: String?
     @IBOutlet weak var imageView: UIImageView!
     let photoHelper = PhotoHelper()
@@ -29,7 +28,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     
     
     @IBAction func publishButtonTapped(_ sender: Any) {
-        count += 1
+        
         let ref = Database.database().reference().child("publish").child(User.current.uid).childByAutoId()
         if imageURL != nil {
             ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])

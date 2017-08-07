@@ -13,7 +13,6 @@ import FirebaseDatabase
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-
     var con = [Content]()
     override func viewDidLoad() {
         super.viewDidLoad()
