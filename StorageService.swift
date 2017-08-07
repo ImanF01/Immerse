@@ -12,7 +12,7 @@ import UIKit
 
 struct StorageService {
     static func uploadImage(_ image: UIImage, at reference: StorageReference, completion: @escaping (URL?) -> Void) {
-        guard let imageData = UIImageJPEGRepresentation(image,0.1) else {
+        guard let imageData = UIImageJPEGRepresentation(image,0.05) else {
             return completion(nil)
         }
         reference.putData(imageData,metadata: nil, completion: { (metadata, error) in
