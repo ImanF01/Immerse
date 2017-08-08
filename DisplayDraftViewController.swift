@@ -26,7 +26,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var publishButton: UIBarButtonItem!
     
-    
     @IBAction func publishButtonTapped(_ sender: Any) {
         publishButton.isEnabled = false
         if (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty || (imageView.image == nil){
@@ -43,19 +42,22 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         }
         else {
             publishButton.isEnabled = true
+            let postRef =  Database.database().reference().child("publish").child("posts").childByAutoId()
             let ref = Database.database().reference().child("publish").child(User.current.uid).childByAutoId()
             if imageURL != nil {
                 ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])
+                postRef.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : self.imageURL])
             }
             else {
                 ref.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
+                postRef.setValue([ "title" : draftTitleTextField.text, "text" : textView.text, "thumbnail" : draft?.imageURL])
             }
         }
     }
 
     @IBAction func extraInfoButton(_ sender: Any) {
-        if (draftTitleTextField.text?.isEmpty)! && textView.text.isEmpty {
-            let alertController = UIAlertController(title: "Wait", message: "Fill in the title and summary before continuing.", preferredStyle: UIAlertControllerStyle.alert)
+        if (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty || (imageView.image == nil){
+            let alertController = UIAlertController(title: "Wait", message: "Wait for the image to load and fill in the title and summary.", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
                 print("Cancel")
             }

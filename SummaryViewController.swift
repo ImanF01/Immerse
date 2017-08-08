@@ -21,7 +21,7 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ref = Database.database().reference().child("publish").child(User.current.uid).child(key!)
+        let ref = Database.database().reference().child("publish").child("posts").child(key!)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String : Any]
             self.titleLabel.text = value?["title"] as? String

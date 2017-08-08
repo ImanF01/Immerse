@@ -23,12 +23,10 @@ class ExtraInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func optionsButtonTapped(_ sender: Any) {
@@ -60,7 +58,7 @@ class ExtraInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let ref = Database.database().reference().child("publish").child(User.current.uid).child(contentKey!).child("extra info")
+        let ref = Database.database().reference().child("publish").child("posts").child(contentKey!).child("extra info")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
                 return

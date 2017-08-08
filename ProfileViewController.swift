@@ -19,6 +19,10 @@ class ProfileViewController: UIViewController {
     var authHandle: AuthStateDidChangeListenerHandle?
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBAction func trashButtonTapped(_ sender: Any) {
+        let indexPath = collectionView.indexPathsForSelectedItems!
+        self.collectionView.deleteItems(at: indexPath)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let ref = Database.database().reference().child("users").child(User.current.uid)

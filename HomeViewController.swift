@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let ref = Database.database().reference().child("publish").child(User.current.uid)
+        let ref = Database.database().reference().child("publish").child("posts")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
                 return

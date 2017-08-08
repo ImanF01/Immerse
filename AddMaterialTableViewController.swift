@@ -27,9 +27,8 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
 
     @IBAction func publishButtonTapped(_ sender: Any) {
         print("Publish button tapped")
-//        let index = self.tableView.indexPathForSelectedRow!
         
-        let newRef = Database.database().reference().child("publish")
+        let newRef = Database.database().reference().child("publish").child(User.current.uid)
         
             newRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -39,15 +38,26 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
                 let key = snapshot[snapshot.count - 1].key
                 print("Key = \(String(describing: key))")
                 
-            let ref = Database.database().reference().child("publish").child(key).child("extra info").childByAutoId()
-//            if index.row == 0
-//            {
+            let ref = Database.database().reference().child("publish").child(User.current.uid).child(key).child("extra info").childByAutoId()
+                
+        let keyRef = Database.database().reference().child("publish").child("posts")
+                
+            keyRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                guard let snapshot = snapshot.children.allObjects as?
+                        [DataSnapshot] else { return }
+                    
+                let postKey = snapshot[snapshot.count - 1].key
+                    print("postKey = \(String(describing: postKey))")
+
+            let postRef = Database.database().reference().child("publish").child("posts").child(postKey).child("extra info").childByAutoId()
                 if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
                 {
                     ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+                    postRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                 }
-//            }
-        })
+                })
+            })
     }
     
     @IBAction func plusButtonTapped(_ sender: Any) {
