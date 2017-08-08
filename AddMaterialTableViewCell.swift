@@ -12,7 +12,7 @@ class AddMaterialTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var urlLabel: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

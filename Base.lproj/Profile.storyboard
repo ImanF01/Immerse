@@ -39,7 +39,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kpu-5g-No6">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kpu-5g-No6">
                                                     <rect key="frame" x="5" y="0.0" width="375" height="200"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7F-cC-Tbe" userLabel="Title">
@@ -68,6 +68,7 @@
                                         <connections>
                                             <outlet property="thumbnailImage" destination="kpu-5g-No6" id="weQ-Wd-ofP"/>
                                             <outlet property="titleLabel" destination="i7F-cC-Tbe" id="4h0-Yn-zlT"/>
+                                            <outlet property="trashButton" destination="h6P-we-noO" id="iFr-pa-MgY"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

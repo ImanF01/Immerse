@@ -21,7 +21,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="MzI-Qe-zku">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MzI-Qe-zku">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -46,7 +46,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HLi-6b-G7F">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HLi-6b-G7F">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.97245579957962036" green="0.92957669496536255" blue="0.8932684063911438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="IaB-hL-HOY">
@@ -171,6 +171,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" image="btn_options_black"/>
+                                <connections>
+                                    <action selector="optionsButtonTapped:" destination="YUP-fK-NFg" eventType="touchUpInside" id="hbt-Ht-5rg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -205,7 +208,7 @@
                                 <items>
                                     <navigationItem title="Supplemental Information" id="W0H-PC-NMw">
                                         <barButtonItem key="leftBarButtonItem" title="&lt;Back" id="FEJ-H8-ItC">
-                                            <color key="tintColor" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" red="0.1450980392" green="0.3294117647" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="hero_unwindToRootViewController" destination="IB1-Is-Fg2" id="3j4-Xn-FoD"/>
                                             </connections>

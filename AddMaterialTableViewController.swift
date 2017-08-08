@@ -25,9 +25,30 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         }
     }
 
+    @IBOutlet weak var publishButton: UIBarButtonItem!
+    
     @IBAction func publishButtonTapped(_ sender: Any) {
         print("Publish button tapped")
-        
+       
+        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
+        {
+            if (descriptionText.isEmpty || titleText.isEmpty || urlText.isEmpty)
+            {
+                publishButton.isEnabled = false
+                let alertController = UIAlertController(title: "Wait", message: "Fill in all fields before publishing", preferredStyle: UIAlertControllerStyle.alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                    print("Cancel")
+                }
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    print("OK")
+                }
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+        else {
+        publishButton.isEnabled = true
         let newRef = Database.database().reference().child("publish").child(User.current.uid)
         
             newRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -58,6 +79,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
                 }
                 })
             })
+        }
     }
     
     @IBAction func plusButtonTapped(_ sender: Any) {
@@ -227,7 +249,18 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         }
 //    }
 }
-
+//extension NSMutableAttributedString {
+//    
+//    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
+//        
+//        let foundRange = self.mutableString.range(of: textToFind)
+//        if foundRange.location != NSNotFound {
+//            self.addAttribute(NSLinkAttributeName, value: linkURL, range: foundRange)
+//            return true
+//        }
+//        return false
+//    }
+//}
 
 //extension UIViewController
 //{

@@ -12,4 +12,5 @@ class ProfileContributionCell: UICollectionViewCell {
     
     @IBOutlet weak var thumbnailImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var trashButton: UIButton!
 }

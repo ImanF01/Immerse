@@ -13,15 +13,36 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     var user: User!
+    var trashButton: UIButton!
     var content = [Content]()
     var username: String?
     var contributionCount: Int?
+//    var index: IndexPath!
     var authHandle: AuthStateDidChangeListenerHandle?
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func trashButtonTapped(_ sender: Any) {
-        let indexPath = collectionView.indexPathsForSelectedItems!
-        self.collectionView.deleteItems(at: indexPath)
+//        let buttonPosition:CGPoint = (sender as AnyObject).convertPoint((sender as AnyObject).bounds.origin, toView: self.collectionView)
+//        let indexPath = self.collectionView.indexPathForItem(at: buttonPosition)
+       
+        let alertController = UIAlertController(title: "Wait", message: "Are you sure you want to delete your contribution?", preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+            print("Cancel")
+        }
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("OK")
+            if let cell = (sender as AnyObject).superview??.superview as? ProfileContributionCell {
+                let indexPath = self.collectionView.indexPath(for: cell)
+        
+                self.content.remove(at: (indexPath?.item)!)
+                self.collectionView.reloadData()
+            }
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+
+     
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +113,7 @@ class ProfileViewController: UIViewController {
 }
 
 
-extension ProfileViewController: UICollectionViewDataSource {
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return content.count
     }
@@ -102,6 +123,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         let url = URL(string: content[indexPath.item].thumbnailURL)
         cell.thumbnailImage.kf.setImage(with: url)
         cell.titleLabel.text = content[indexPath.item].title
+        self.trashButton = cell.trashButton
         
         return cell
 
@@ -117,4 +139,9 @@ extension ProfileViewController: UICollectionViewDataSource {
         }
         return headerView
     }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print(indexPath)
+//        
+//        self.index = indexPath
+//    }
 }

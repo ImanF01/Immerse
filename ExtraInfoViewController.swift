@@ -36,14 +36,7 @@ class ExtraInfoViewController: UIViewController {
         let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
             let ref = Database.database().reference().child("flagged").child(self.contentKey!).child("extra info")
             ref.setValue(["title" : self.titleText, "url" : self.urlText, "description" : self.descriptionText])
-//            let specifyController = UIAlertController(title: nil, message: "Specify the inappropriate content", preferredStyle: .alert)
-//            let input = specifyController.textFields?[0]
-//            if input?.text != nil {
-//
-//            }
-//            specifyController.addTextField(configurationHandler: { (textField) -> Void in
-//                textField.placeholder = "Explain"
-//            })
+
                 let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(okAlert, animated: true)
@@ -86,13 +79,13 @@ extension ExtraInfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ExtraInfoTableViewCell", for: indexPath) as! ExtraInfoTableViewCell
-    cell.titleLabel.text = extraInfo[indexPath.row].title
-    self.titleText = cell.titleLabel.text
-    cell.urlLabel.text = extraInfo[indexPath.row].url
-    self.urlText = cell.urlLabel.text
-    cell.descriptionLabel.text = extraInfo[indexPath.row].description
-    self.descriptionText = cell.descriptionLabel.text
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExtraInfoTableViewCell", for: indexPath) as! ExtraInfoTableViewCell
+        cell.titleLabel.text = extraInfo[indexPath.row].title
+        self.titleText = cell.titleLabel.text
+        cell.urlLabel.text = extraInfo[indexPath.row].url
+        self.urlText = cell.urlLabel.text
+        cell.descriptionLabel.text = extraInfo[indexPath.row].description
+        self.descriptionText = cell.descriptionLabel.text
         
     return cell
     }

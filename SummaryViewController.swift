@@ -19,6 +19,24 @@ class SummaryViewController: UIViewController {
     var key: String?
     var panGR: UIPanGestureRecognizer!
     
+    @IBAction func optionsButtonTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
+            let ref = Database.database().reference().child("flagged").child(self.key!).child("summary")
+            ref.setValue(["title" : self.titleLabel.text, "summary" : self.summaryTextView.text])
+            
+            let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
+            okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(okAlert, animated: true)
+        }
+        alertController.addAction(flagAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let ref = Database.database().reference().child("publish").child("posts").child(key!)

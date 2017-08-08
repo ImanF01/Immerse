@@ -9,8 +9,6 @@
 import UIKit
 import FirebaseDatabase
 
-
-
 class ProfileHeaderView: UICollectionReusableView {
         
     @IBOutlet weak var usernameLabel: UILabel!
