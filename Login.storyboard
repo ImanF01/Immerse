@@ -22,48 +22,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4VA-GU-CQa">
-                                <rect key="frame" x="31" y="177" width="313" height="86.5"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="okT-CD-SzG">
+                                <rect key="frame" x="0.0" y="175" width="375" height="297"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Immerse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aol-8c-hGx">
-                                        <rect key="frame" x="86.5" y="0.0" width="140.5" height="40.5"/>
-                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="36"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Immerse yourself into a world of knowledge" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0L-w9-TsI">
-                                        <rect key="frame" x="12.5" y="70.5" width="288.5" height="16"/>
-                                        <fontDescription key="fontDescription" name="ArialHebrew" family="Arial Hebrew" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0TR-Fn-k9X">
+                                        <rect key="frame" x="21" y="39" width="306" height="101.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4VA-GU-CQa">
+                                                <rect key="frame" x="0.0" y="0.0" width="306" height="101.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Immerse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aol-8c-hGx">
+                                                        <rect key="frame" x="85" y="0.0" width="136" height="50.5"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="36"/>
+                                                        <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Immerse yourself into a world of knowledge" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0L-w9-TsI">
+                                                        <rect key="frame" x="0.0" y="80.5" width="306" height="21"/>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                                                        <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-iv-JLa">
+                                        <rect key="frame" x="42" y="212" width="285" height="44"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="JaH-rU-gLc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                                        <state key="normal" title="Register or Log In">
+                                            <color key="titleColor" red="0.29411764709999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="TVk-5V-mHn" eventType="touchUpInside" id="f5J-gY-pYW"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8D-iv-JLa">
-                                <rect key="frame" x="51" y="299.5" width="273" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="JaH-rU-gLc"/>
+                                    <constraint firstItem="g8D-iv-JLa" firstAttribute="top" secondItem="okT-CD-SzG" secondAttribute="top" constant="212" id="1qC-xt-0Wg"/>
+                                    <constraint firstItem="g8D-iv-JLa" firstAttribute="leading" secondItem="okT-CD-SzG" secondAttribute="leading" constant="42" id="M7E-GG-tHh"/>
+                                    <constraint firstAttribute="trailing" secondItem="g8D-iv-JLa" secondAttribute="trailing" constant="48" id="h92-Zd-7s1"/>
+                                    <constraint firstAttribute="bottom" secondItem="g8D-iv-JLa" secondAttribute="bottom" constant="41" id="kdC-eW-BOO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
-                                <state key="normal" title="Register or Log In">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButtonTapped:" destination="TVk-5V-mHn" eventType="touchUpInside" id="f5J-gY-pYW"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97245579957962036" green="0.92957669496536255" blue="0.8932684063911438" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="4VA-GU-CQa" firstAttribute="leading" secondItem="1HN-vT-yp4" secondAttribute="leadingMargin" constant="15" id="13b-1w-hnn"/>
-                            <constraint firstItem="4VA-GU-CQa" firstAttribute="top" secondItem="zlw-OU-acO" secondAttribute="bottom" constant="157" id="EOy-YM-uOz"/>
-                            <constraint firstItem="4VA-GU-CQa" firstAttribute="centerX" secondItem="1HN-vT-yp4" secondAttribute="centerX" id="LQL-07-2Fz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="g8D-iv-JLa" secondAttribute="trailing" constant="35" id="VlO-Sg-r9m"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4VA-GU-CQa" secondAttribute="trailing" constant="15" id="dra-i0-C5A"/>
-                            <constraint firstItem="g8D-iv-JLa" firstAttribute="top" secondItem="4VA-GU-CQa" secondAttribute="bottom" constant="36" id="eGg-cB-fCN"/>
-                            <constraint firstItem="g8D-iv-JLa" firstAttribute="leading" secondItem="1HN-vT-yp4" secondAttribute="leadingMargin" constant="35" id="juy-gz-4s4"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="g8D-iv-JLa" id="DWj-ZK-SuE"/>
@@ -108,11 +117,17 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                                 <color key="value" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                <color key="value" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tay-3c-Brr">
                                         <rect key="frame" x="0.0" y="131" width="273" height="44"/>
-                                        <color key="backgroundColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="rXt-Xv-N31"/>
                                         </constraints>
@@ -137,7 +152,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="yH7-Dw-ayl" secondAttribute="trailing" constant="35" id="AVj-Ns-zuH"/>
                             <constraint firstItem="eLn-DK-L1x" firstAttribute="top" secondItem="yH7-Dw-ayl" secondAttribute="bottom" constant="427" id="FPY-k7-Ypm"/>

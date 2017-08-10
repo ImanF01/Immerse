@@ -54,14 +54,14 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note Modification Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAH-ii-cI7">
                                             <rect key="frame" x="21" y="40" width="346" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjq-zh-H5y">
                                             <rect key="frame" x="21" y="11" width="346" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="19"/>
                                             <color key="textColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -139,18 +139,6 @@
                                     <constraint firstAttribute="height" constant="209" id="e2R-ka-QNX"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CJw-4T-jel">
-                                <rect key="frame" x="178" y="488" width="19" height="51"/>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKq-Zh-d14">
-                                <rect key="frame" x="0.0" y="413" width="375" height="205"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="tlY-Ov-3iz"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="uploadImage:" destination="BhC-Km-UmT" eventType="touchUpInside" id="zBd-Rq-Iui"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Oh-Uw-BpV" customClass="GrowingTextView" customModule="GrowingTextView">
                                 <rect key="frame" x="10" y="116" width="365" height="266"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -164,6 +152,25 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Summary of Topic"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CJw-4T-jel">
+                                <rect key="frame" x="178" y="488" width="19" height="51"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKq-Zh-d14">
+                                <rect key="frame" x="0.0" y="413" width="375" height="205"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="tlY-Ov-3iz"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="uploadImage:" destination="BhC-Km-UmT" eventType="touchUpInside" id="zBd-Rq-Iui"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recommended to use smaller image for faster results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CY2-80-Fyz">
+                                <rect key="frame" x="27" y="428" width="321" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -210,7 +217,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <state key="normal" title="Extra Info">
-                                <color key="titleColor" red="0.3294117647" green="0.18039215689999999" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -226,13 +233,13 @@
                         </button>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" systemItem="save" id="UjM-62-Oql">
-                                <color key="tintColor" red="0.14509803921568626" green="0.32941176470588235" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="BhC-Km-UmT" id="Es7-lD-a83"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Publish" style="done" id="0ar-Sa-1ud">
-                                <color key="tintColor" red="0.3294117647" green="0.18039215689999999" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="publishButtonTapped:" destination="BhC-Km-UmT" id="Owr-0k-mbT"/>
                                 </connections>
@@ -249,6 +256,7 @@
                         <outlet property="draftTitleTextField" destination="Ae9-q9-WwC" id="HEg-Le-q6T"/>
                         <outlet property="imageView" destination="RSo-Xm-VCe" id="ces-sp-6mU"/>
                         <outlet property="publishButton" destination="0ar-Sa-1ud" id="kag-nO-Uqo"/>
+                        <outlet property="recommendLabel" destination="CY2-80-Fyz" id="802-6s-zba"/>
                         <outlet property="textView" destination="2Oh-Uw-BpV" id="HGL-Sw-iH4"/>
                     </connections>
                 </viewController>
@@ -373,7 +381,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.25882352939999997" green="0.1333333333" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textColor" red="0.25882352939999997" green="0.1333333333" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -404,9 +412,9 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ncu-0g-3iH">
                                     <rect key="frame" x="16" y="7" width="59" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="17"/>
                                     <state key="normal" title="&lt; Back">
-                                        <color key="titleColor" red="0.1450980392" green="0.3294117647" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade translate(0, -150)  zPosition(20) useGlobalCoordinateSpace"/>
@@ -415,6 +423,7 @@
                                         <action selector="hero_dismissViewController" destination="ErF-x4-hLY" eventType="touchUpInside" id="MFm-zG-fF1"/>
                                     </connections>
                                 </button>
+                                <color key="tintColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
                             <barButtonItem style="plain" id="ak1-FH-hSp">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sW5-zJ-Z0K">
@@ -422,12 +431,13 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="17"/>
                                     <state key="normal" title="Publish">
-                                        <color key="titleColor" red="0.3294117647" green="0.18039215689999999" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleColor" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="publishButtonTapped:" destination="CIN-jJ-kFa" eventType="touchUpInside" id="ajB-y6-JWk"/>
                                     </connections>
                                 </button>
+                                <color key="tintColor" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
                         </leftBarButtonItems>
                         <rightBarButtonItems>
@@ -438,7 +448,7 @@
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="save" id="Pzy-dY-J3L">
-                                <color key="tintColor" red="0.3294117647" green="0.18039215689999999" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="CIN-jJ-kFa" id="zx8-0t-QX6"/>
                                 </connections>

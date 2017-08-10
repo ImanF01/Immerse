@@ -17,6 +17,9 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     var isEditMode = false
     var editIndex = -1
     var indexPath: Int?
+    var draftKey: String?
+    var publishKey: String?
+    var postKey2 = [String]()
     var add: Add?
     var draft: Draft?
     var addition = [Add](){
@@ -26,61 +29,48 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     }
 
     @IBOutlet weak var publishButton: UIBarButtonItem!
-    
-    @IBAction func publishButtonTapped(_ sender: Any) {
-        print("Publish button tapped")
-       
-        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
-        {
-            if (descriptionText.isEmpty || titleText.isEmpty || urlText.isEmpty)
-            {
-                publishButton.isEnabled = false
-                let alertController = UIAlertController(title: "Wait", message: "Fill in all fields before publishing", preferredStyle: UIAlertControllerStyle.alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-                    print("Cancel")
-                }
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                    print("OK")
-                }
-                alertController.addAction(cancelAction)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
-        else {
-        publishButton.isEnabled = true
-        let newRef = Database.database().reference().child("publish").child(User.current.uid)
+    //        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
+    //        {
+    //            if (descriptionText.isEmpty || titleText.isEmpty || urlText.isEmpty)
+    //            {
+    //                publishButton.isEnabled = false
+    //                let alertController = UIAlertController(title: "Wait", message: "Fill in all fields before publishing", preferredStyle: UIAlertControllerStyle.alert)
+    //                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+    //                    print("Cancel")
+    //                }
+    //                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+    //                    print("OK")
+    //                }
+    //                alertController.addAction(cancelAction)
+    //                alertController.addAction(okAction)
+    //                self.present(alertController, animated: true, completion: nil)
+    //            }
+    //        }
+    //        else {
+    //        publishButton.isEnabled = true
+    @IBAction func publishButtonTapped(_ sender: Any)
+    {
+        if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
+            let ref = Database.database().reference().child("publish").child(User.current.uid).child(postKey2[postKey2.count - 1]).child("extra info").childByAutoId()
         
-            newRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                guard let snapshot = snapshot.children.allObjects as?
-                    [DataSnapshot] else { return }
-                
-                let key = snapshot[snapshot.count - 1].key
-                print("Key = \(String(describing: key))")
-                
-            let ref = Database.database().reference().child("publish").child(User.current.uid).child(key).child("extra info").childByAutoId()
-                
-        let keyRef = Database.database().reference().child("publish").child("posts")
-                
-            keyRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                ref.updateChildValues(["title" : titleText, "description" : descriptionText, "URL" : urlText], withCompletionBlock: { (error, ref) in
+                    if error != nil {
+                        return
+                    }
                     
-                guard let snapshot = snapshot.children.allObjects as?
-                        [DataSnapshot] else { return }
-                    
-                let postKey = snapshot[snapshot.count - 1].key
-                    print("postKey = \(String(describing: postKey))")
+                    print(ref.key)
 
-            let postRef = Database.database().reference().child("publish").child("posts").child(postKey).child("extra info").childByAutoId()
+            let postRef = Database.database().reference().child("publish").child("posts").child(self.publishKey!).child("extra info").child(ref.key)
                 if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText
                 {
                     ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                     postRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                 }
-                })
             })
         }
-    }
+//        })
+}
+    
     
     @IBAction func plusButtonTapped(_ sender: Any) {
         let indexPath = IndexPath(row: 0, section: 0)
@@ -99,11 +89,11 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         }
         isEditMode = false
         
-    }
+        }
     @IBAction func saveButtonTapped(_ sender: Any) {
         if !isEditMode {
             if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
-                let newRef = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").childByAutoId()
+                let newRef = Database.database().reference().child("drafts").child(User.current.uid).child(draftKey!).child("extra info").childByAutoId()
                 newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                 
                 if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
@@ -118,14 +108,13 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             }
             else
             {
-                let alertController = UIAlertController(title: "Error", message: "Fill in all fields before saving.", preferredStyle: UIAlertControllerStyle.alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-                    print("Cancel")
-                }
+                let alertController = UIAlertController(title: "Wait", message: "Fill in all fields before saving.", preferredStyle: UIAlertControllerStyle.alert)
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
                     print("OK")
                 }
-                alertController.addAction(cancelAction)
+                let backView = alertController.view.subviews.last?.subviews.last
+                backView?.layer.cornerRadius = 10.0
+                okAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -133,7 +122,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
             //If reference is needed then don't replace with new Add object but edit the values individualy like so:
             // addition[editIndex].title = titleText
             let key = addition[indexPath!].key
-            let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info").child(key)
+            let ref = Database.database().reference().child("drafts").child(User.current.uid).child(key).child("extra info").child(key)
             if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
                 addition[editIndex] = Add(title: titleText, textView: descriptionText, contentURL: urlText)
                 ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
@@ -150,7 +139,7 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     {
         super.viewWillAppear(animated)
         editIndex = -1
-        let ref = Database.database().reference().child("drafts").child(User.current.uid).child((draft?.key)!).child("extra info")
+        let ref = Database.database().reference().child("drafts").child(User.current.uid).child(draftKey!).child("extra info")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as?
                 [DataSnapshot] else {

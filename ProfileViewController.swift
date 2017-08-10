@@ -22,22 +22,30 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func trashButtonTapped(_ sender: Any) {
-//        let buttonPosition:CGPoint = (sender as AnyObject).convertPoint((sender as AnyObject).bounds.origin, toView: self.collectionView)
-//        let indexPath = self.collectionView.indexPathForItem(at: buttonPosition)
-       
         let alertController = UIAlertController(title: "Wait", message: "Are you sure you want to delete your contribution?", preferredStyle: UIAlertControllerStyle.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
             print("Cancel")
         }
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             print("OK")
+            
             if let cell = (sender as AnyObject).superview??.superview as? ProfileContributionCell {
                 let indexPath = self.collectionView.indexPath(for: cell)
-        
+                
+                let deleteRef = Database.database().reference().child("publish").child("posts").child(self.content[(indexPath?.row)!].key)
+                let deleteRef2 = Database.database().reference().child("publish").child(User.current.uid).child(self.content[(indexPath?.row)!].key)
+                
+                deleteRef.setValue(nil)
+                deleteRef2.setValue(nil)
+                
                 self.content.remove(at: (indexPath?.item)!)
                 self.collectionView.reloadData()
             }
         }
+        let backView = alertController.view.subviews.last?.subviews.last
+        backView?.layer.cornerRadius = 10.0
+        okAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
+        cancelAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
@@ -63,9 +71,11 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func logOutTapped(_ sender: Any) {
+        let signOutString  = "Log Out"
+        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let signOutAction = UIAlertAction(title: "Sign Out", style: .default) { _ in
+        let signOutAction = UIAlertAction(title: signOutString, style: .default) { _ in
             do {
                 try Auth.auth().signOut()
                 print("log out user")
@@ -76,8 +86,8 @@ class ProfileViewController: UIViewController {
         alertController.addAction(signOutAction)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        cancelAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
         alertController.addAction(cancelAction)
-        
         present(alertController, animated: true)
     }
     override func didReceiveMemoryWarning() {

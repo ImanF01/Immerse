@@ -63,7 +63,6 @@ class ListDraftTableViewController: UITableViewController {
                 print("Table view cell tapped")
                 let indexPath = tableView.indexPathForSelectedRow!
                 let draft = drafts[indexPath.row]
-                
                 let displayDraftViewController = segue.destination as! DisplayDraftViewController
                 displayDraftViewController.draft = draft
                 displayDraftViewController.noteEditing = true
@@ -73,6 +72,7 @@ class ListDraftTableViewController: UITableViewController {
                 print("+ button tapped")
                 let displayDraft = segue.destination as! DisplayDraftViewController
                 displayDraft.noteEditing = false
+                
             }
         }
     }

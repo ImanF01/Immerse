@@ -12,7 +12,6 @@ import FirebaseDatabase
 import SkyFloatingLabelTextField
 
 class CreateUsernameViewController: UIViewController {
-    
 
     @IBOutlet weak var usernameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var nextButton: UIButton!
@@ -59,5 +58,4 @@ class CreateUsernameViewController: UIViewController {
     {
         view.endEditing(true)
     }
-    
 }

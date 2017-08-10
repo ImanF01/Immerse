@@ -13,7 +13,7 @@ import FirebaseDatabase
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var con = [Content]()
+    static var con = [Content]()
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.hideKeyboard()
@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
         let vc = segue.destination as! SummaryViewController
         let indexPath = collectionView.indexPathsForSelectedItems!
         let indexPathInt = indexPath[indexPath.count - 1]
-        vc.key = con[indexPathInt.item].key
+        vc.key = HomeViewController.con[indexPathInt.item].key
     
     }
     
@@ -37,14 +37,14 @@ class HomeViewController: UIViewController {
                 return
             }
             print(snapshot)
-            self.con.removeAll()
+            HomeViewController.con.removeAll()
             
             if snapshot.count > 0 {
                 for x in 0...snapshot.count - 1 {
                     let key = snapshot[x].key
                     let snap = snapshot[x].value as! [String: Any]
                     let content = Content(title: snap["title"] as! String, summary: snap["text"] as! String, thumbnailURL: snap["thumbnail"] as! String, key: key)
-                    self.con.append(content)
+                    HomeViewController.con.append(content)
                     self.collectionView.reloadData()
                 }
             }
@@ -73,14 +73,14 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return con.count
+        return HomeViewController.con.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
-        let url = URL(string: con[indexPath.item].thumbnailURL)
+        let url = URL(string: HomeViewController.con[indexPath.item].thumbnailURL)
         cell.imageView.kf.setImage(with: url)
-        cell.titleLabel.text = con[indexPath.item].title
+        cell.titleLabel.text = HomeViewController.con[indexPath.item].title
         return cell
     }
 

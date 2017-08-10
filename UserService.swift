@@ -39,6 +39,8 @@ struct UserService {
             })
         }
     }
+    
+    
 //    static func posts(for user: User, completion: @escaping ([Post]) -> Void) {
 //        let ref = Database.database().reference().child("drafts").child(user.uid).child("thumbnail")
 //        
