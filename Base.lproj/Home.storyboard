@@ -32,7 +32,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a0H-zs-Pci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39" y="1447"/>
+            <point key="canvasLocation" x="-105" y="1447"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="get-mQ-uXF">
@@ -75,6 +75,15 @@
                                                     <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-pe-BoQ">
+                                                    <rect key="frame" x="314" y="20" width="41" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                    <state key="normal" title=". . ."/>
+                                                    <connections>
+                                                        <action selector="optionButtonTapped:" destination="CjH-is-sT1" eventType="touchUpInside" id="NBK-ZI-XxI"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -88,6 +97,7 @@
                                         <size key="customSize" width="375" height="200"/>
                                         <connections>
                                             <outlet property="imageView" destination="xFQ-U4-zvp" id="v9v-A1-HSE"/>
+                                            <outlet property="optionButton" destination="dsn-pe-BoQ" id="9X6-jv-NVe"/>
                                             <outlet property="titleLabel" destination="Gb0-BM-C88" id="qHn-xd-WfP"/>
                                             <segue destination="YUP-fK-NFg" kind="presentation" identifier="toSummaryVC" id="g87-EP-Mk7"/>
                                         </connections>
@@ -190,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkc-54-zUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1632.8" y="1446.9265367316343"/>
+            <point key="canvasLocation" x="1577" y="1447"/>
         </scene>
         <!--Extra Info View Controller-->
         <scene sceneID="n5v-9c-sUv">
@@ -304,7 +314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IB1-Is-Fg2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1632.8" y="2193.5532233883059"/>
+            <point key="canvasLocation" x="1577" y="2179"/>
         </scene>
     </scenes>
     <resources>

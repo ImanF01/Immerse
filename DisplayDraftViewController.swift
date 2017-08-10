@@ -17,7 +17,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var noteEditing = false
     var key: String?
     var draft: Draft?
-//    var refKey: String?
     var add: Add?
     var imageURL: String?
     @IBOutlet weak var imageView: UIImageView!

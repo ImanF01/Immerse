@@ -28,6 +28,10 @@ class HomeViewController: UIViewController {
     
     }
     
+    @IBAction func optionButtonTapped(_ sender: Any) {
+        print("option button tapped")
+    }
+    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,6 +82,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
+        cell.optionButton.layer.cornerRadius = 2
+        cell.optionButton.clipsToBounds = true
         let url = URL(string: HomeViewController.con[indexPath.item].thumbnailURL)
         cell.imageView.kf.setImage(with: url)
         cell.titleLabel.text = HomeViewController.con[indexPath.item].title
