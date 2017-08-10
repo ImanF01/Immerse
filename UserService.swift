@@ -21,6 +21,7 @@ struct UserService {
             completion(user)
         })
     }
+    
     static func create(_ firUser: FIRUser, username: String, completion: @escaping (User?) -> Void) {
         let userAttrs: [String : Any] = ["username": username,
                                          "follower_count": 0,

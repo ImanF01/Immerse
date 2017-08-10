@@ -82,7 +82,6 @@ class ListDraftTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             let key = drafts[indexPath.row].key
             let ref = Database.database().reference().child("drafts").child(User.current.uid).child(key)
             ref.removeValue(completionBlock: { (error, refer) in

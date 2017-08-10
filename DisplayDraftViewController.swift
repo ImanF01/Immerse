@@ -17,7 +17,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var noteEditing = false
     var key: String?
     var draft: Draft?
-    var refKey: String?
+//    var refKey: String?
     var add: Add?
     var imageURL: String?
     @IBOutlet weak var imageView: UIImageView!
@@ -42,28 +42,19 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             self.present(alertController, animated: true, completion: nil)
         } else {
             publishButton.isEnabled = true
-            let ref = Database.database().reference().child("publish").child(User.current.uid).childByAutoId()
+            let ref = Database.database().reference().child("publish").child(User.current.uid).child((draft?.key)!)
+            let postRef =  Database.database().reference().child("publish").child("posts").child((self.draft?.key)!)
             if self.imageURL != nil {
                 if let title = draftTitleTextField.text, let text = textView.text, let url = self.imageURL {
-                    ref.updateChildValues([ "title" : title, "text" : text, "thumbnail" : url], withCompletionBlock: { (error, ref) in
-                        if error != nil {
-                            print("HI")
-                            return
-                        }
-                        print(ref.key)
-                        self.refKey = ref.key
-                        let postRef =  Database.database().reference().child("publish").child("posts").child(ref.key)
-                        
                         if self.imageURL != nil {
-                            ref.setValue([ "title" : self.draftTitleTextField.text, "text" : self.textView.text, "thumbnail" : self.imageURL])
-                            postRef.setValue([ "title" : self.draftTitleTextField.text, "text" : self.textView.text, "thumbnail" : self.imageURL])
+                            ref.setValue([ "title" : title, "text" : text, "thumbnail" : url])
+                            postRef.setValue([ "title" : title, "text" : text, "thumbnail" : url])
                         }
                         else
                         {
-                            ref.setValue([ "title" : self.draftTitleTextField.text, "text" : self.textView.text, "thumbnail" : self.draft?.imageURL])
-                            postRef.setValue([ "title" : self.draftTitleTextField.text, "text" : self.textView.text, "thumbnail" : self.draft?.imageURL])
+                            ref.setValue([ "title" : title, "text" : text, "thumbnail" : self.draft?.imageURL ?? ""])
+                            postRef.setValue([ "title" : title, "text" : text, "thumbnail" : self.draft?.imageURL])
                         }
-                    })
                 }
             } else {
                 if let title = draftTitleTextField.text, let text = textView.text, let url = draft?.imageURL
@@ -74,9 +65,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
                             print("HI")
                             return
                         }
-                        print(ref.key)
-                        self.refKey = ref.key
-                        let postRef =  Database.database().reference().child("publish").child("posts").child(ref.key)
+                        let postRef =  Database.database().reference().child("publish").child("posts").child((self.draft?.key)!)
                         
                         if self.imageURL != nil
                         {
