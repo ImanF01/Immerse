@@ -23,7 +23,7 @@ class SummaryViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
-            let ref = Database.database().reference().child("flagged").child(self.key!).child("summary")
+            let ref = Database.database().reference().child("flagged").child("summary").childByAutoId()
             ref.setValue(["title" : self.titleLabel.text, "summary" : self.summaryTextView.text])
             
             let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)

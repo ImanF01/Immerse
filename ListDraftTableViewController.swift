@@ -72,6 +72,7 @@ class ListDraftTableViewController: UITableViewController {
                 print("+ button tapped")
                 let displayDraft = segue.destination as! DisplayDraftViewController
                 displayDraft.noteEditing = false
+                displayDraft.recommendLabel.isHidden = !(displayDraft.recommendLabel.isHidden)
                 
             }
         }

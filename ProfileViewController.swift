@@ -12,12 +12,12 @@ import Kingfisher
 import FirebaseAuth
 
 class ProfileViewController: UIViewController {
+    
     var user: User!
     var trashButton: UIButton!
     var content = [Content]()
     var username: String?
     var contributionCount: Int?
-//    var index: IndexPath!
     var authHandle: AuthStateDidChangeListenerHandle?
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -54,12 +54,6 @@ class ProfileViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ref = Database.database().reference().child("users").child(User.current.uid)
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? [String : Any]
-            self.username = value?["username"] as? String
-        })
-        
         authHandle = Auth.auth().addStateDidChangeListener() { [unowned self] (auth, user) in
             guard user == nil else { return }
             let loginViewController = UIStoryboard.initialViewController(for: .login)
@@ -72,7 +66,6 @@ class ProfileViewController: UIViewController {
 
     @IBAction func logOutTapped(_ sender: Any) {
         let signOutString  = "Log Out"
-        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let signOutAction = UIAlertAction(title: signOutString, style: .default) { _ in
@@ -90,6 +83,7 @@ class ProfileViewController: UIViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -143,15 +137,19 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             fatalError("Unexpected element kind.")
         }
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ProfileHeaderView", for: indexPath) as! ProfileHeaderView
-        headerView.usernameLabel.text = self.username
+        let ref = Database.database().reference().child("users").child(User.current.uid)
+        ref.observe(.value, with: { (snapshot) in
+            let value = snapshot.value as? [String : Any]
+            print("Username = \(String(describing: value?["username"] as? String))")
+            self.username = value?["username"] as? String
+            headerView.usernameLabel.text = self.username
+        })
         if let contribution = self.contributionCount {
             headerView.numberOfContributions.text = "\(String(describing: contribution))"
         }
         return headerView
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(indexPath)
-//        
-//        self.index = indexPath
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.size.width, height: 200.0)
+    }
 }

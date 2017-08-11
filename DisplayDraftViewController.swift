@@ -19,6 +19,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     var draft: Draft?
     var add: Add?
     var imageURL: String?
+    var count = 0
     @IBOutlet weak var imageView: UIImageView!
     let photoHelper = PhotoHelper()
     @IBOutlet weak var draftTitleTextField: UITextField!
@@ -45,15 +46,15 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             let postRef =  Database.database().reference().child("publish").child("posts").child((self.draft?.key)!)
             if self.imageURL != nil {
                 if let title = draftTitleTextField.text, let text = textView.text, let url = self.imageURL {
-                        if self.imageURL != nil {
-                            ref.setValue([ "title" : title, "text" : text, "thumbnail" : url])
-                            postRef.setValue([ "title" : title, "text" : text, "thumbnail" : url])
-                        }
-                        else
-                        {
-                            ref.setValue([ "title" : title, "text" : text, "thumbnail" : self.draft?.imageURL ?? ""])
-                            postRef.setValue([ "title" : title, "text" : text, "thumbnail" : self.draft?.imageURL])
-                        }
+                    if self.imageURL != nil {
+                        ref.setValue([ "title" : title, "text" : text, "thumbnail" : url])
+                        postRef.setValue([ "title" : title, "text" : text, "thumbnail" : url])
+                    }
+                    else
+                    {
+                        ref.setValue([ "title" : title, "text" : text, "thumbnail" : self.draft?.imageURL ?? ""])
+                        postRef.setValue([ "title" : title, "text" : text, "thumbnail" : self.draft?.imageURL])
+                    }
                 }
             } else {
                 if let title = draftTitleTextField.text, let text = textView.text, let url = draft?.imageURL
@@ -94,6 +95,22 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         }
+        if draft?.key == nil {
+            let alertController = UIAlertController(title: "Wait", message: "Save and close before adding extra information", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                print("OK")
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                print("Cancel")
+            }
+            let backView = alertController.view.subviews.last?.subviews.last
+            backView?.layer.cornerRadius = 10.0
+            okAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
+            cancelAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     @IBAction func uploadImage(_ sender: Any) {
         photoHelper.presentActionSheet(from: self)
@@ -106,7 +123,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
                 self.imageView.image = image
                 self.imageURL = urlString
                 self.activityIndicatorView.stopAnimating()
-                self.recommendLabel.isHidden = !(self.recommendLabel.isHidden)
             })
         }
     }
@@ -116,7 +132,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
         super.viewDidLoad()
         
         draftTitleTextField.text = draft?.title ?? ""
-        self.recommendLabel.isHidden = self.recommendLabel.isHidden
         textView.text = draft?.content ?? ""
         self.hideKeyboard()
         draftTitleTextField.tintColor = UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0)
@@ -126,13 +141,14 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.recommendLabel.isHidden = !(self.recommendLabel.isHidden)
+        self.recommendLabel.isHidden = self.recommendLabel.isHidden
         let imgURL = URL(string: draft?.imageURL ?? "")
         imageView.kf.setImage(with: imgURL, options: [.transition(.fade(0.2))])
     }
     
     @IBAction func saveButtonTapped(_ sender: Any)
     {
+        self.count += 1
         if ((self.imageView.image == nil) || (draftTitleTextField.text?.isEmpty)! || textView.text.isEmpty)
         {
             let alertController = UIAlertController(title: "Wait", message: "Wait for the image to load and fill in the title and summary", preferredStyle: UIAlertControllerStyle.alert)

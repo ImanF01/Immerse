@@ -2,7 +2,7 @@
 //  UIImage+Size.swift
 //  Immerse
 //
-//  Created by Iman F on 7/30/17.
+//  Created by Iman F on 8/10/17.
 //  Copyright © 2017 Iman F (group project). All rights reserved.
 //
 

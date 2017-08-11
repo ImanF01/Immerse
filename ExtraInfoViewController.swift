@@ -34,16 +34,8 @@ class ExtraInfoViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
-            let ref = Database.database().reference().child("flagged").child(self.contentKey!).child("extra info")
+            let ref = Database.database().reference().child("flagged").child("extra info").childByAutoId()
             ref.setValue(["title" : self.titleText, "url" : self.urlText, "description" : self.descriptionText])
-//            let specifyController = UIAlertController(title: nil, message: "Specify the inappropriate content", preferredStyle: .alert)
-//            let input = specifyController.textFields?[0]
-//            if input?.text != nil {
-//
-//            }
-//            specifyController.addTextField(configurationHandler: { (textField) -> Void in
-//                textField.placeholder = "Explain"
-//            })
                 let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(okAlert, animated: true)

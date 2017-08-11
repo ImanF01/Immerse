@@ -11,7 +11,8 @@ import Kingfisher
 import FirebaseDatabase
 
 class HomeViewController: UIViewController {
-    
+    var publishedTitle: String?
+    var thumbnailURL: String?
     @IBOutlet weak var collectionView: UICollectionView!
     static var con = [Content]()
     override func viewDidLoad() {
@@ -30,6 +31,22 @@ class HomeViewController: UIViewController {
     
     @IBAction func optionButtonTapped(_ sender: Any) {
         print("option button tapped")
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
+            let ref = Database.database().reference().child("flagged").child("home").childByAutoId()
+            ref.setValue(["title" : self.publishedTitle, "thumbnailURL" : self.thumbnailURL])
+            
+            let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
+            okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(okAlert, animated: true)
+        }
+        alertController.addAction(flagAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+
     }
     
 
@@ -82,12 +99,18 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "PublishedContentCollectionViewCell", for: indexPath) as? PublishedContentCollectionViewCell)!
+        self.publishedTitle = cell.titleLabel.text
+//        self.thumbnailURL = cell.
         cell.optionButton.layer.cornerRadius = 2
         cell.optionButton.clipsToBounds = true
         let url = URL(string: HomeViewController.con[indexPath.item].thumbnailURL)
+        self.thumbnailURL = url?.absoluteString
         cell.imageView.kf.setImage(with: url)
         cell.titleLabel.text = HomeViewController.con[indexPath.item].title
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView!.frame.size.width, height: 204.0)
     }
 
 }
