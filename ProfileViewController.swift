@@ -117,7 +117,7 @@ class ProfileViewController: UIViewController {
 }
 
 
-extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return content.count
     }
