@@ -62,27 +62,24 @@ class SummaryViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! ExtraInfoViewController
+        let destination = segue.destination as! UINavigationController
+        let vc = destination.topViewController as! ExtraInfoViewController
         vc.contentKey = self.key
     }
     
     func handlePan(gestureRecognizer:UIPanGestureRecognizer) {
-        // calculate the progress based on how far the user moved
         let translation = panGR.translation(in: nil)
         let progress = translation.y / 2 / view.bounds.height
         
         switch panGR.state {
         case .began:
-            // begin the transition as normal
             dismiss(animated: true, completion: nil)
         case .changed:
             Hero.shared.update(progress: Double(progress))
             
-            // update views' position (limited to only vertical scroll)
             Hero.shared.apply(modifiers: [.position(CGPoint(x:titleLabel.center.x, y:translation.y + summaryTextView.center.y))], to: titleLabel)
             Hero.shared.apply(modifiers: [.position(CGPoint(x:summaryTextView.center.x, y:translation.y + summaryTextView.center.y))], to: summaryTextView)
         default:
-            // end or cancel the transition based on the progress and user's touch velocity
             if progress + panGR.velocity(in: nil).y / view.bounds.height > 0.3 {
                 Hero.shared.end()
             } else {

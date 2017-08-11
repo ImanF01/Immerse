@@ -49,13 +49,38 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
     //        publishButton.isEnabled = true
     @IBAction func publishButtonTapped(_ sender: Any){
         if let descriptionText = self.descriptionText, let titleText = self.titleText, let urlText = self.urlText {
-            let ref = Database.database().reference().child("publish").child(User.current.uid).child(draftKey!).child("extra info").child(self.key!)
-            let postRef = Database.database().reference().child("publish").child("posts").child(draftKey!).child("extra info").child(self.key!)
+            let ref = Database.database().reference().child("publish").child("posts")
             
-            ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
-            postRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if !(snapshot.hasChild(self.draftKey!)) {
+                        let alertController = UIAlertController(title: "Wait", message: "Before publishing extra info, publish your summary first", preferredStyle: UIAlertControllerStyle.alert)
+                        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+                            print("Cancel")
+                        }
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                            print("OK")
+                        }
+                        let backView = alertController.view.subviews.last?.subviews.last
+                        backView?.layer.cornerRadius = 10.0
+                        okAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
+                        alertController.addAction(okAction)
+                        
+                        cancelAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+
+                    }
+                    else {
+                        let ref = Database.database().reference().child("publish").child(User.current.uid).child(self.draftKey!).child("extra info").child(self.key!)
+                        let postRef = Database.database().reference().child("publish").child("posts").child(self.draftKey!).child("extra info").child(self.key!)
+                        
+                        ref.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+                        postRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
+                    }
+                })
+            }
         }
-    }
     
     
     
@@ -84,10 +109,17 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
                 newRef.setValue(["title" : titleText, "description" : descriptionText, "URL" : urlText])
                 
                 if (!(descriptionText.isEmpty) && !(titleText.isEmpty) && !(urlText.isEmpty)) {
-                    
-                    add = Add(title: titleText, textView: descriptionText, contentURL: urlText)
-                    self.addition.append(add!)
-                    print(addition)
+                    let keyRef = Database.database().reference().child("drafts").child(User.current.uid).child(draftKey!).child("extra info")
+                    keyRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                        guard let snapshot = snapshot.children.allObjects as?
+                            [DataSnapshot] else {
+                                return
+                        }
+                        let key = snapshot[snapshot.count - 1].key
+                        self.add = Add(title: titleText, textView: descriptionText, contentURL: urlText, key: key)
+                        self.addition.append(self.add!)
+                        
+                    })
                     self.descriptionText = ""
                     self.titleText = ""
                     self.urlText = ""
@@ -120,10 +152,6 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         super.viewDidLoad()
         //        self.hideKeyboard()
         
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let displayDraft = segue.destination as! DisplayDraftViewController
-        displayDraft.recommendLabel.isHidden = !(displayDraft.recommendLabel.isHidden)
     }
     override func viewWillAppear(_ animated: Bool)
     {

@@ -26,7 +26,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     @IBOutlet weak var textView: GrowingTextView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var publishButton: UIBarButtonItem!
-    @IBOutlet weak var recommendLabel: UILabel!
     
     @IBAction func publishButtonTapped(_ sender: Any) {
         publishButton.isEnabled = false
@@ -141,7 +140,6 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.recommendLabel.isHidden = self.recommendLabel.isHidden
         let imgURL = URL(string: draft?.imageURL ?? "")
         imageView.kf.setImage(with: imgURL, options: [.transition(.fade(0.2))])
     }

@@ -22,7 +22,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Vh-t4-2bh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9Vh-t4-2bh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -42,9 +42,9 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" id="gat-h8-4TQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.99291115999221802" green="0.99568349123001099" blue="0.99203580617904663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listDraftTableViewCell" rowHeight="86" id="yWT-Zh-UWV" customClass="ListDraftTableViewCell" customModule="Immerse" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" alpha="0.94999999999999996" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listDraftTableViewCell" rowHeight="86" id="yWT-Zh-UWV" customClass="ListDraftTableViewCell" customModule="Immerse" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yWT-Zh-UWV" id="PRu-XE-NvB">
@@ -52,15 +52,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Modification Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAH-ii-cI7">
-                                            <rect key="frame" x="21" y="48.666666666666671" width="186.66666666666666" height="24.000000000000014"/>
+                                            <rect key="frame" x="21" y="44" width="186.66666666666666" height="24"/>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjq-zh-H5y">
-                                            <rect key="frame" x="21" y="11" width="346" height="32.666666666666664"/>
-                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="23"/>
-                                            <color key="textColor" red="0.14524593949317932" green="0.32847696542739868" blue="0.26202678680419922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <rect key="frame" x="21" y="11" width="346" height="28"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -72,6 +72,7 @@
                                         <constraint firstItem="YAH-ii-cI7" firstAttribute="top" secondItem="fjq-zh-H5y" secondAttribute="bottom" constant="5" id="fEr-UM-IGd"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="noteModificationTimeLabel" destination="YAH-ii-cI7" id="BWI-Hq-Bjh"/>
                                     <outlet property="noteTitleLabel" destination="fjq-zh-H5y" id="NtF-kB-WUn"/>
@@ -115,7 +116,7 @@
                                     <constraint firstAttribute="height" constant="30" id="wXb-eH-GQw"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Title"/>
@@ -145,7 +146,7 @@
                                 </constraints>
                                 <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.        </mutableString>
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Summary of Topic"/>
                                 </userDefinedRuntimeAttributes>
@@ -163,12 +164,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended to use smaller image for faster results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CY2-80-Fyz">
-                                        <rect key="frame" x="16" y="8" width="343" height="47.666666666666686"/>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CJw-4T-jel">
                                         <rect key="frame" x="177.66666666666666" y="90" width="20" height="20"/>
                                     </activityIndicatorView>
@@ -177,9 +172,7 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="RSo-Xm-VCe" secondAttribute="bottom" id="0oH-Jt-xyP"/>
                                     <constraint firstItem="GKq-Zh-d14" firstAttribute="leading" secondItem="OvB-yv-KpB" secondAttribute="leading" id="493-yb-Tzb"/>
-                                    <constraint firstItem="CY2-80-Fyz" firstAttribute="leading" secondItem="OvB-yv-KpB" secondAttribute="leading" constant="16" id="CPD-eV-W94"/>
                                     <constraint firstAttribute="trailing" secondItem="GKq-Zh-d14" secondAttribute="trailing" id="Cs5-VN-0JD"/>
-                                    <constraint firstItem="CY2-80-Fyz" firstAttribute="top" secondItem="OvB-yv-KpB" secondAttribute="top" constant="8" id="GWb-Ha-PpZ"/>
                                     <constraint firstItem="GKq-Zh-d14" firstAttribute="top" secondItem="OvB-yv-KpB" secondAttribute="top" id="KB2-gs-HYd"/>
                                     <constraint firstAttribute="trailing" secondItem="RSo-Xm-VCe" secondAttribute="trailing" id="ShY-A6-3OP"/>
                                     <constraint firstItem="RSo-Xm-VCe" firstAttribute="leading" secondItem="OvB-yv-KpB" secondAttribute="leading" id="Vk8-xi-wUa"/>
@@ -187,7 +180,6 @@
                                     <constraint firstItem="RSo-Xm-VCe" firstAttribute="top" secondItem="OvB-yv-KpB" secondAttribute="top" id="mZJ-Ni-c9t"/>
                                     <constraint firstItem="CJw-4T-jel" firstAttribute="centerY" secondItem="OvB-yv-KpB" secondAttribute="centerY" id="p2l-DC-Auf"/>
                                     <constraint firstItem="CJw-4T-jel" firstAttribute="centerX" secondItem="OvB-yv-KpB" secondAttribute="centerX" id="vBX-bk-ctt"/>
-                                    <constraint firstAttribute="trailing" secondItem="CY2-80-Fyz" secondAttribute="trailing" constant="16" id="w3y-VK-CgU"/>
                                     <constraint firstAttribute="height" constant="200" id="zYa-64-MzD"/>
                                 </constraints>
                             </view>
@@ -243,7 +235,7 @@
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Publish" style="done" id="0ar-Sa-1ud">
-                                <color key="tintColor" red="0.19738861918449402" green="0.3191063404083252" blue="0.25965419411659241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.19607843137254902" green="0.31764705882352939" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="publishButtonTapped:" destination="BhC-Km-UmT" id="Owr-0k-mbT"/>
                                 </connections>
@@ -260,7 +252,6 @@
                         <outlet property="draftTitleTextField" destination="Ae9-q9-WwC" id="HEg-Le-q6T"/>
                         <outlet property="imageView" destination="RSo-Xm-VCe" id="ces-sp-6mU"/>
                         <outlet property="publishButton" destination="0ar-Sa-1ud" id="kag-nO-Uqo"/>
-                        <outlet property="recommendLabel" destination="CY2-80-Fyz" id="802-6s-zba"/>
                         <outlet property="textView" destination="2Oh-Uw-BpV" id="HGL-Sw-iH4"/>
                     </connections>
                 </viewController>
@@ -286,12 +277,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gga-MU-Yb5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="188.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="184.66666666666666"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" scrollEnabled="NO" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ziL-r4-rHu" userLabel="Title" customClass="GrowingTextView" customModule="GrowingTextView">
-                                                    <rect key="frame" x="8" y="8.6666666666666679" width="406" height="44"/>
+                                                    <rect key="frame" x="8" y="8.6666666666666643" width="406" height="40"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Title of Post"/>
@@ -300,10 +291,10 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" text="URL" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-Cv-zvu" userLabel="URL" customClass="GrowingTextView" customModule="GrowingTextView">
-                                                    <rect key="frame" x="8" y="63" width="367" height="36"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" scrollEnabled="NO" text="URL" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-Cv-zvu" userLabel="URL" customClass="GrowingTextView" customModule="GrowingTextView">
+                                                    <rect key="frame" x="8" y="65" width="406" height="34.333333333333329"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                     <userDefinedRuntimeAttributes>
@@ -367,7 +358,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-TY-tA6">
                                             <rect key="frame" x="8" y="8" width="406" height="36"/>
-                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="17"/>
                                             <color key="textColor" red="0.1450980392" green="0.3294117647" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -380,13 +371,12 @@
                                             <color key="textColor" red="0.1450980392" green="0.3294117647" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="URL" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fQ7-oz-RhM">
-                                            <rect key="frame" x="8" y="58" width="351" height="42"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="URL" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fQ7-oz-RhM">
+                                            <rect key="frame" x="0.0" y="52" width="414" height="57"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.25882352939999997" green="0.1333333333" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="textColor" red="0.67450980390000004" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                         </textView>
@@ -396,9 +386,13 @@
                                         <constraint firstAttribute="bottom" secondItem="Jcq-TY-tA6" secondAttribute="bottom" constant="142.5" id="4zB-6z-gK1"/>
                                         <constraint firstItem="SDr-yO-iU4" firstAttribute="leading" secondItem="slh-TQ-ZqU" secondAttribute="leading" constant="8" id="Csl-B7-Axo"/>
                                         <constraint firstAttribute="trailing" secondItem="Jcq-TY-tA6" secondAttribute="trailing" id="Jsh-k5-Khr"/>
+                                        <constraint firstItem="fQ7-oz-RhM" firstAttribute="top" secondItem="Jcq-TY-tA6" secondAttribute="bottom" constant="8" symbolic="YES" id="Lhw-AD-5MY"/>
                                         <constraint firstItem="SDr-yO-iU4" firstAttribute="top" secondItem="slh-TQ-ZqU" secondAttribute="top" constant="108" id="Rck-fE-zP9"/>
+                                        <constraint firstAttribute="trailing" secondItem="fQ7-oz-RhM" secondAttribute="trailing" id="c8q-gH-0kb"/>
                                         <constraint firstAttribute="trailing" secondItem="SDr-yO-iU4" secondAttribute="trailing" id="dp0-I9-G4e"/>
+                                        <constraint firstItem="fQ7-oz-RhM" firstAttribute="leading" secondItem="slh-TQ-ZqU" secondAttribute="leading" id="ffz-MT-BPW"/>
                                         <constraint firstItem="Jcq-TY-tA6" firstAttribute="top" secondItem="slh-TQ-ZqU" secondAttribute="top" constant="8" id="jfQ-NZ-cc8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fQ7-oz-RhM" secondAttribute="bottom" constant="69.666666666666657" id="zoT-E9-0pU"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -465,14 +459,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErF-x4-hLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="1736.5817091454273"/>
+            <point key="canvasLocation" x="579.71014492753625" y="1736.413043478261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XNW-Ot-eIV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GRK-uW-YQ1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u8u-Ff-lVb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u8u-Ff-lVb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
