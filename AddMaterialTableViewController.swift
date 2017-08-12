@@ -174,10 +174,10 @@ class AddMaterialTableViewController: UITableViewController, GrowingTextViewDele
         })
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.key = addition[indexPath.row - 1].key
+        
         if indexPath.row != 0 {
             editIndex = indexPath.row - 1
-            
+            self.key = addition[indexPath.row - 1].key
             self.descriptionText = addition[editIndex].textView
             self.titleText = addition[editIndex].title
             self.urlText = addition[editIndex].contentURL

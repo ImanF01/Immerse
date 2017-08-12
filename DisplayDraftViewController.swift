@@ -78,6 +78,15 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
                         }
                     })
                 }
+                let alertController = UIAlertController(title: "Publish successful", message: "Your draft has been published", preferredStyle: UIAlertControllerStyle.alert)
+                let backView = alertController.view.subviews.last?.subviews.last
+                backView?.layer.cornerRadius = 10.0
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    print("OK")
+                }
+                okAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
