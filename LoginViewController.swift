@@ -9,8 +9,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseAuthUI
-import FirebaseGoogleAuthUI
 import FirebaseDatabase
+import FirebaseGoogleAuthUI
 typealias FIRUser = FirebaseAuth.User
 
 class LoginViewController: UIViewController {
@@ -24,7 +24,6 @@ class LoginViewController: UIViewController {
         authUI.delegate = self
         let providers: [FUIAuthProvider] = [FUIGoogleAuth()]
         authUI.providers = providers
-        
         let authViewController = authUI.authViewController()
         present(authViewController, animated: true)
     }
@@ -38,9 +37,24 @@ class LoginViewController: UIViewController {
 }
 extension LoginViewController: FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
+//        if let error = error {
+//            assertionFailure("Error signing in: \(error.localizedDescription)")
+//        }
         guard let user = user
             else { return }
-        
+        let userRef = Database.database().reference().child("users").child(user.uid)
+        userRef.observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
+            if let user = User(snapshot: snapshot) {
+                User.setCurrent(user)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                if let initialViewController = storyboard.instantiateInitialViewController() {
+                    self.view.window?.rootViewController = initialViewController
+                }
+            } else {
+                self.performSegue(withIdentifier: Constants.Segue.toCreateUsername, sender: self)
+            }
+        })
         UserService.show(forUID: user.uid) { (user) in
             if let user = user {
                 User.setCurrent(user, writeToUserDefaults: true)

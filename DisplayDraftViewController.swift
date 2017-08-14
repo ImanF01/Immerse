@@ -39,6 +39,7 @@ class DisplayDraftViewController: UIViewController,UINavigationControllerDelegat
             okAction.setValue(UIColor(red:0.00, green:0.34, blue:0.27, alpha:1.0), forKey: "titleTextColor")
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
+        
         } else {
             publishButton.isEnabled = true
             let ref = Database.database().reference().child("publish").child(User.current.uid).child((draft?.key)!)
